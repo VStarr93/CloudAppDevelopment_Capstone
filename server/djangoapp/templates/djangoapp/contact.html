@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         {% load static %}
         <meta charset="UTF-8">
-        <title>Dealership Review</title>
+        <title>Contact Us</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -11,28 +11,29 @@
         <link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet">
         <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
         <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
-
+    
     </head>
 
     <body>
-        This is the Index page of your Django app!
+        This is the Contact Us page of your Django app!
        <!--Add a nav bar here -->
        <nav class="navbar navbar-dark bg-dark">
-           <div class="container-fluid">
-               <div class="navbar-header">
-                     <a class="navbar-brand" href="#">Online Course</a>
-               </div>
+            <div class="container-fluid">
+                <div class="navbar-header">
+                      <a class="navbar-brand" href="#">Online Course</a>
+                </div>
 
-               <ul class="navbar">
-                    <a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a>
-                    <a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a>
-                    <a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a>
-                </ul>
-           </div>
-       </nav>
-
-
-        <!--Add a dealer table here -->
+                <ul class="navbar">
+                     <a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a>
+                     <a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a>
+                     <a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a>
+                 </ul>
+            </div>
+        </nav>
+       
+        <!-- include the address and the telephone number of the company-->
+       <!--users should be able to access the Contact Us page from a footer, a button,
+            a menu link, or any other element you choose to use-->
         <footer class="has-footer navbar-dark bg-dark container-fluid navbar">
             <h5 style="color: white;">This is a footer</h5>
             <ul class="navbar">
@@ -41,6 +42,5 @@
                 <a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a>
             </ul>
         </footer>
-    </body>
-
+       </body>
 </html>
