@@ -5,42 +5,155 @@
         <meta charset="UTF-8">
         <title>Contact Us</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'djangoapp/styles.css' %}">
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet">
         <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
         <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
-    
     </head>
 
-    <body>
-        This is the Contact Us page of your Django app!
+    <body class="container-fluid" style="background-color: white;">
+        
+        <div class="row">
+            <div class="col bg-dark">
+                <header class="text-center">
+                    <p style="color: white;">Welcome!</p>
+                </header>
+            </div>
+        </div>
        <!--Add a nav bar here -->
-       <nav class="navbar navbar-dark bg-dark">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                      <a class="navbar-brand" href="#">Online Course</a>
+        <div class="row sticky-top">
+            <div class="col bg-dark" style="height: 12vh;">
+            <nav class="navbar navbar-dark">
+                    <div class="navbar-header">
+                          <a class="navbar-brand" href="{% url 'djangoapp:index' %}">Best Cars</a>
+                    </div>
+
+                    <ul class="navbar">
+                         <a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a>
+                         <a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a>
+                         <a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a>
+                    </ul>
+            </nav>
+            </div>
+        </div>
+        
+       <!--Add a Contact Us paragraph-->
+        <div class="row mt-2">
+            <div class="col">
+                <p class="mt-3 mb-3" style="text-align: center;">
+                    We would love to hear from you!<br>
+                    Feel free to give us a call, stop on buy, or
+                    send us a request for information today!
+                </p>
+            </div>
+        </div>
+
+        <!-- include the address and the telephone number of the company-->
+        <div class="row align-items-start mt-5">
+            <div class="col border-right mt-2 mb-2 text-right">
+                <div class="">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d221664.83570542495!2d-95.64915866718755!3d29.7628028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640bf3743e3a9b7%3A0xd59ca8fed9dbcb98!2sIBM!5e0!3m2!1sen!2sus!4v1664051987410!5m2!1sen!2sus" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+
+            <div class="col text-left">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="text-center">
+                            <h2>Contact Us</h2>
+                        </div>
+                    </div>
                 </div>
 
-                <ul class="navbar">
-                     <a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a>
-                     <a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a>
-                     <a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a>
-                 </ul>
+                <div class="row">
+                    <div class="col-6 col-md-3 text-left">
+                        <strong>Address: </strong>
+                    </div>
+
+                    <div class="col-6 col-md-3 text-left">
+                        315 Capitol St<br>
+                        Unit 205<br>
+                        Houston, Tx 77002<br>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 col-md-3 text-left">
+                        <strong>Phone Number:</strong>
+                    </div>
+
+                    <div class="col-6 col-md-3 text-left">
+                        123-455-6789
+                    </div>
+                </div>
             </div>
-        </nav>
-       
-        <!-- include the address and the telephone number of the company-->
-       <!--users should be able to access the Contact Us page from a footer, a button,
+
+        </div>
+        
+        <!--Add a Contact Us Form-->
+        <div class="row mt-5 mb-5">
+            <div class="col text-center">
+                <form id="request_form" name="request_form">
+                    <div class="container card">
+                        <h4>Request Info</h3>
+                        <p>Fill out the form below and a sales rep will reach out to you as soon as possible</p>
+                        <div class="form-group">
+                            <label for="#first_name">First Name</label>
+                            <input id=first_name type="text" name="first_name"/><br>
+                            <label for="last_name">Last Name</label>
+                            <input id="last_name" type="text" name="last_name"/><br>
+                            <label for="request_message">Message: </label>
+                            <input id="request_message" type="text" name="request_message"/><br>
+                            <button type="submit" class="btn btn-primary">SUBMIT</button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!--users should be able to access the Contact Us page from a footer, a button,
             a menu link, or any other element you choose to use-->
-        <footer class="has-footer navbar-dark bg-dark container-fluid navbar">
-            <h5 style="color: white;">This is a footer</h5>
-            <ul class="navbar">
-                <a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a>
-                <a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a>
-                <a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a>
-            </ul>
-        </footer>
+        <!--Add a Footer-->
+        <div class="row bg-dark">
+            <div class="col">
+                <footer class="navbar-dark position-relative">
+                <div class="row align-items-center">
+                    <div class="col-4">
+                        <h5 style="color: white;">This is a footer</h5>
+                    </div>
+
+                    <div class="col-4">
+                    <ul class="">
+                        <a class="navbar nav-link" href="{% url 'djangoapp:index' %}">Home</a>
+                        <a class="navbar nav-link" href="{% url 'djangoapp:about' %}">About</a>
+                        <a class="navbar nav-link" href="{% url 'djangoapp:contact' %}">Contact Us</a>
+                    </ul>
+                    </div>
+
+                    <div class="col-4">
+                        this is column 3
+                    </div>
+                </div>
+
+                <div class="row" style="height: 25px;">
+                    <div class="col"></div>
+                </div>
+            </footer>
+            </div>
+        </div>
+
+
+
+        <!--<div class="fixed-bottom">-->
+        <div class="row fixed-bottom">
+        <div class="col bg-dark text-center" style="height: 25px; color: white;">
+            <h5>Car Dealership</h5>
+        </div>
+        </div>
+
        </body>
 </html>

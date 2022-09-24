@@ -27,7 +27,7 @@ DEBUG = True
 
 APPEND_SLASH = True
 
-ALLOWED_HOSTS = ["localhost", '127.0.0.1', vjdjangoapp.mybluemix.net']
+ALLOWED_HOSTS = ["localhost", '127.0.0.1', 'vjdjangoapp.mybluemix.net']
 
 
 # Application definition

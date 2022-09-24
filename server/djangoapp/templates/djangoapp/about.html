@@ -14,34 +14,166 @@
     
     </head>
 
-    <body>
-        This is the About page of your Django app!
-       <!--Add a nav bar here -->
-       <nav class="navbar navbar-dark bg-dark">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                      <a class="navbar-brand" href="#">Online Course</a>
-                </div>
-
-                <ul class="navbar">
-                     <a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a>
-                     <a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a>
-                     <a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a>
-                 </ul>
+    <body class="container-fluid">
+        
+        <div class="row">
+            <div class="col bg-dark">
+                <header class="text-center">
+                    <p style="color: white;">Welcome!</p>
+                </header>
             </div>
-        </nav>
-       
-        <h1>
-            Welcome to Best Cars dealership, home to the best cars in North America. We sell domestic and imported cars at reasonable prices.
-        </h1>
+        </div>
+       <!--Add a nav bar here -->
+        <div class="row sticky-top">
+            <div class="col bg-dark" style="height: 12vh;">
+                <nav class="navbar navbar-dark">
+                        <div class="navbar-header">
+                              <a class="navbar-brand" href="{% url 'djangoapp:index' %}">Best Cars</a>
+                        </div>
+                    
+                        <ul class="navbar">
+                             <a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a>
+                             <a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a>
+                             <a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a>
+                         </ul>
+                </nav>
+            </div>
+        </div>
+        <!--Add a dealer table here -->
 
-        <footer class="has-footer navbar-dark bg-dark container-fluid navbar">
-            <h5 style="color: white;">This is a footer</h5>
-            <ul class="navbar">
-                <a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a>
-                <a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a>
-                <a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a>
-            </ul>
-        </footer>
+        <!--Add a paragraph-->
+        <div class="row mb-5 mt-3">
+            <div class="col text-center">
+                <h1 class="border-bottom">Welcome to Best Cars dealership, home to the best cars in North America.</h1>
+                <h2 class="">We sell domestic and imported cars at reasonable prices.</h2>
+            </div>
+        </div>
+
+        <!--Add relevent information-->
+        <!--Add two subtitle blocks-->
+        <div class="row">
+            <div class="col border-right text-center">
+                <h3>Subtitle</h3>
+                <p>This is a paragraph for this subtitle</p>
+            </div>
+
+            <div class="col text-center">
+                <h3>Subtitle</h3>
+                <p>This is a paragraph for this subtitle</p>
+            </div>
+        </div>
+
+        <!--Add Four Stars as a divider-->
+        <div class="row text-center mt-5 mb-5">
+            <div class="col">
+                <img src="{% static 'djangoapp/asset_1.png' %}" style="width: 25%;" />
+            </div>
+            <div class="col">
+                <img src="{% static 'djangoapp/asset_1.png' %}" style="width: 25%;" />
+            </div>
+            <div class="col">
+                <img src="{% static 'djangoapp/asset_1.png' %}" style="width: 25%;" />
+            </div>
+            <div class="col">
+                <img src="{% static 'djangoapp/asset_1.png' %}" style="width: 25%;" />
+            </div>
+        </div>
+
+        <!--About the Owner's Section-->
+        <div class="row mb-5">
+            <div class="col border-right text-right">
+                <img src="{% static 'djangoapp/asset_1.png' %}" style="width: 100%; max-width: 300px;" />
+            </div>
+
+            <div class="col">
+                <p class="">
+                    <strong>Samantha Ovark</strong><br>
+                    <em>CEO</em><br>
+                    <br>
+                    <p>
+                        Samantha Ovark is an exceptionally talented mother of 6
+                        who has earned her Masters Degree in Business Management, 
+                        with a major in Accounting and Finance, and minor in 
+                        Psychology. She started her first business at the age of 16 
+                        while attending a local public school. Her drive and ambition is 
+                        what led her to opening Best Cars dealership. She aspires to help 
+                        her community rise from the ashes.
+                    </p>
+
+                </p>
+            </div>
+
+        </div>
+
+        <div class="row mb-5">
+            <div class="col border-right text-right">
+                <img src="{% static 'djangoapp/asset_1.png' %}" style="width: 100%; max-width: 300px;" />
+            </div>
+
+            <div class="col">
+                <p class="">
+                    <strong>Samantha Ovark</strong><br>
+                    <em>CEO</em><br>
+                    <br>
+                    <p>
+                        Samantha Ovark is an exceptionally talented mother of 6
+                        who has earned her Masters Degree in Business Management, 
+                        with a major in Accounting and Finance, and minor in 
+                        Psychology. She started her first business at the age of 16 
+                        while attending a local public school. Her drive and ambition is 
+                        what led her to opening Best Cars dealership. She aspires to help 
+                        her community rise from the ashes.
+                    </p>
+
+                </p>
+            </div>
+
+        </div>
+
+        <div class="row mb-5">
+            <div class="col border-right text-right">
+                <img src="{% static 'djangoapp/asset_1.png' %}" style="width: 100%; max-width: 300px;" />
+            </div>
+
+            <div class="col">
+                <p class="">
+                    <strong>Samantha Ovark</strong><br>
+                    <em>CEO</em><br>
+                    <br>
+                    <p>
+                        Samantha Ovark is an exceptionally talented mother of 6
+                        who has earned her Masters Degree in Business Management, 
+                        with a major in Accounting and Finance, and minor in 
+                        Psychology. She started her first business at the age of 16 
+                        while attending a local public school. Her drive and ambition is 
+                        what led her to opening Best Cars dealership. She aspires to help 
+                        her community rise from the ashes.
+                    </p>
+
+                </p>
+            </div>
+
+        </div>
+
+        <!--Add a Footer-->
+        <div class="row position-relative">
+            <div class="col bg-dark">
+                <footer class="has-footer navbar-dark navbar">
+                    <h5 style="color: white;">This is a footer</h5>
+                    <ul class="navbar">
+                        <a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a>
+                        <a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a>
+                        <a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a>
+                    </ul>
+                </footer>
+            </div>
+        </div>
+
+        <div class="row fixed-bottom">
+            <div class="col bg-dark text-center" style="height: 25px; color: white;">
+                <h5>Car Dealership</h5>
+            </div>
+        </div>
     </body>
+
 </html>

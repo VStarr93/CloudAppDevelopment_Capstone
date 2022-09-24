@@ -14,33 +14,51 @@
 
     </head>
 
-    <body>
-        This is the Index page of your Django app!
+    <body class="container-fluid">
+        
+        <div class="row">
+            <div class="col bg-dark">
+                <header class="text-center">
+                    <p style="color: white;">Welcome!</p>
+                </header>
+            </div>
+        </div>
        <!--Add a nav bar here -->
-       <nav class="navbar navbar-dark bg-dark">
-           <div class="container-fluid">
-               <div class="navbar-header">
-                     <a class="navbar-brand" href="#">Online Course</a>
-               </div>
-
-               <ul class="navbar">
-                    <a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a>
-                    <a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a>
-                    <a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a>
-                </ul>
-           </div>
-       </nav>
-
-
+        <div class="row sticky-top">
+            <div class="col bg-dark" style="height: 12vh;">
+                <nav class="navbar navbar-dark">
+                        <div class="navbar-header">
+                              <a class="navbar-brand" href="{% url 'djangoapp:index' %}">Best Cars</a>
+                        </div>
+                    
+                        <ul class="navbar">
+                             <a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a>
+                             <a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a>
+                             <a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a>
+                         </ul>
+                </nav>
+            </div>
+        </div>
         <!--Add a dealer table here -->
-        <footer class="has-footer navbar-dark bg-dark container-fluid navbar">
-            <h5 style="color: white;">This is a footer</h5>
-            <ul class="navbar">
-                <a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a>
-                <a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a>
-                <a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a>
-            </ul>
-        </footer>
+
+        <div class="row position-relative">
+            <div class="col bg-dark">
+                <footer class="has-footer navbar-dark navbar">
+                    <h5 style="color: white;">This is a footer</h5>
+                    <ul class="navbar">
+                        <a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a>
+                        <a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a>
+                        <a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a>
+                    </ul>
+                </footer>
+            </div>
+        </div>
+
+        <div class="row fixed-bottom">
+            <div class="col bg-dark text-center" style="height: 25px; color: white;">
+                <h5>Car Dealership</h5>
+            </div>
+        </div>
     </body>
 
 </html>

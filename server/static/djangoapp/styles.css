@@ -1,0 +1,18 @@
+.rowStyle {
+    display:flex;
+}
+
+.twoColumns {
+    background: red;
+    flex:50%
+}
+
+.vh-50 {
+    min-height: 50vh;
+    border-right-width: 50px;
+    border-right-color: brown;
+}
+
+body {
+    background: purple;
+}
