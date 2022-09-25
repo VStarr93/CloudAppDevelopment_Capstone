@@ -5,7 +5,137 @@
     {% load static %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-    <body>
-    <!--Add a registration form here -->
+    <body class="container-fluid">
+        <!--Add a Header here
+        <div class="row">
+            <div class="col bg-dark">
+                <header class="text-center">
+                    <p style="color: white;">Welcome!</p>
+                </header>
+            </div>
+        </div>-->
+       <!--Add a Header and nav bar here -->
+        <div class="sticky-top">
+                <!--Row for Header-->
+                <div class="row">
+                    <div class="col bg-dark">
+                        <div class="navbar navbar-dark navbar-header">
+                            <a class="navbar-brand" href="{% url 'djangoapp:index' %}">Best Cars</a>
+                        </div>
+                    </div>
+
+                    <div class="col bg-dark">
+                        <ul class="nav navbar-nav text-right">
+                            {% if user.is_authenticated %}
+                            <li>
+                                <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
+                                <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
+                            </li>
+                            {% else %}
+                            <li>
+                                <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
+                                    {% csrf_token %}
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Username" name="username" >
+                                        <input type="password" class="form-control" placeholder="Username" name="psw" >
+                                        <button class="btn btn-primary" type="submit">Login</button>
+                                        <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
+                                    </div>
+                                </form>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                <!--Row for Navigation-->
+                <div class="row">
+                    <div class="col bg-dark">
+                        <ul class="navbar list-unstyled justify-content-center">
+                            <li><a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a></li>
+                            <li><a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a></li>
+                            <li><a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+        <!--Add a dealer table here -->
+        <div class="row">
+            <div class="col min-vh-100">
+                <!--Add a registration form here -->
+                <form class="mt-5 mb-5 ml-5 mr-5" action="{% url 'djangoapp:registration' %}" method="post">
+                    <div class="card text-center">
+                        {% csrf_token %}
+                        <h1>Sign Up</h1>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col text-right">
+                                    <label for="first_name">First Name: </label>
+                                </div>
+                                <div class="col text-left">
+                                    <input id="first_name" name="first_name" type="text" placeholder="Enter your first name" /><br/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-right">
+                                    <label for="last_name">Last Name: </label>
+                                </div>
+                                <div class="col text-left">
+                                    <input id="last_name" name="last_name" type="text" placeholder="Enter your last name" /><br/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-right">
+                                    <label for="username">Username: </label>
+                                </div>
+                                <div class="col text-left">
+                                    <input id="username" name="username" type="text" placeholder="Enter your username" /><br/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-right">
+                                    <label for="password">Password: </label>
+                                </div>
+                                <div class="col text-left">
+                                    <input id="password" name="password" type="password" placeholder="Enter your password" /><br/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-right">
+                                    <label for="reenter_password">Re-enter Password: </label>
+                                </div>
+                                <div class="col text-left">
+                                    <input id="reenter_password" name="reenter_password" type="password" placeholder="Enter your password" /><br/>   
+                                </div>
+                            </div>
+                            {% if message %}
+                                <div class="alert alert-warning"> <!--Style the message paragraph with .alert and .alert-warning class -->
+                                {{ message }}
+                                </div>
+                            {% endif %}
+                            <button class="btn btn-primary" type="submit">Sign up</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--Add a Footer here-->
+        <div class="row position-relative">
+            <div class="col bg-dark">
+                <footer class="has-footer navbar-dark navbar">
+                    <h5 style="color: white;">This is a footer</h5>
+                    <ul class="navbar">
+                        <a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a>
+                        <a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a>
+                        <a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a>
+                    </ul>
+                </footer>
+            </div>
+        </div>
+
+        <div class="row fixed-bottom">
+            <div class="col bg-dark text-center" style="height: 25px; color: white;">
+                <h5>Car Dealership</h5>
+            </div>
+        </div>
     </body>
 </html>

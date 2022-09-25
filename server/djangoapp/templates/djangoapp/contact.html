@@ -16,28 +16,56 @@
 
     <body class="container-fluid" style="background-color: white;">
         
-        <div class="row">
+        <!--<div class="row">
             <div class="col bg-dark">
                 <header class="text-center">
                     <p style="color: white;">Welcome!</p>
                 </header>
             </div>
-        </div>
+        </div>-->
        <!--Add a nav bar here -->
-        <div class="row sticky-top">
-            <div class="col bg-dark" style="height: 12vh;">
-            <nav class="navbar navbar-dark">
-                    <div class="navbar-header">
-                          <a class="navbar-brand" href="{% url 'djangoapp:index' %}">Best Cars</a>
-                    </div>
-
-                    <ul class="navbar">
-                         <a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a>
-                         <a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a>
-                         <a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a>
-                    </ul>
-            </nav>
+       <div class="sticky-top">
+        <!--Row for Header-->
+        <div class="row">
+            <div class="col bg-dark">
+                <div class="navbar navbar-dark navbar-header">
+                    <a class="navbar-brand" href="{% url 'djangoapp:index' %}">Best Cars</a>
+                </div>
             </div>
+
+            <div class="col bg-dark">
+                <ul class="nav navbar-nav text-right">
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
+                        <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Username" name="username" >
+                                <input type="password" class="form-control" placeholder="Username" name="psw" >
+                                <button class="btn btn-primary" type="submit">Login</button>
+                                <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
+                            </div>
+                        </form>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <!--Row for Navigation-->
+        <div class="row">
+            <div class="col bg-dark">
+                <ul class="navbar list-unstyled justify-content-center">
+                    <li><a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a></li>
+                    <li><a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a></li>
+                    <li><a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
         </div>
         
        <!--Add a Contact Us paragraph-->
@@ -55,7 +83,7 @@
         <div class="row align-items-start mt-5">
             <div class="col border-right mt-2 mb-2 text-right">
                 <div class="">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d221664.83570542495!2d-95.64915866718755!3d29.7628028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640bf3743e3a9b7%3A0xd59ca8fed9dbcb98!2sIBM!5e0!3m2!1sen!2sus!4v1664051987410!5m2!1sen!2sus" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe class="" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d221664.83570542495!2d-95.64915866718755!3d29.7628028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640bf3743e3a9b7%3A0xd59ca8fed9dbcb98!2sIBM!5e0!3m2!1sen!2sus!4v1664051987410!5m2!1sen!2sus" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
 
@@ -98,6 +126,7 @@
             <div class="col text-center">
                 <form id="request_form" name="request_form">
                     <div class="container card">
+                        {% csrf_token %}
                         <h4>Request Info</h3>
                         <p>Fill out the form below and a sales rep will reach out to you as soon as possible</p>
                         <div class="form-group">
@@ -118,31 +147,16 @@
         <!--users should be able to access the Contact Us page from a footer, a button,
             a menu link, or any other element you choose to use-->
         <!--Add a Footer-->
-        <div class="row bg-dark">
-            <div class="col">
-                <footer class="navbar-dark position-relative">
-                <div class="row align-items-center">
-                    <div class="col-4">
-                        <h5 style="color: white;">This is a footer</h5>
-                    </div>
-
-                    <div class="col-4">
-                    <ul class="">
-                        <a class="navbar nav-link" href="{% url 'djangoapp:index' %}">Home</a>
-                        <a class="navbar nav-link" href="{% url 'djangoapp:about' %}">About</a>
-                        <a class="navbar nav-link" href="{% url 'djangoapp:contact' %}">Contact Us</a>
+        <div class="row position-relative">
+            <div class="col bg-dark">
+                <footer class="has-footer navbar-dark navbar">
+                    <h5 style="color: white;">This is a footer</h5>
+                    <ul class="navbar">
+                        <a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a>
+                        <a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a>
+                        <a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a>
                     </ul>
-                    </div>
-
-                    <div class="col-4">
-                        this is column 3
-                    </div>
-                </div>
-
-                <div class="row" style="height: 25px;">
-                    <div class="col"></div>
-                </div>
-            </footer>
+                </footer>
             </div>
         </div>
 
