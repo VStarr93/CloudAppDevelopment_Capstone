@@ -1,16 +1,23 @@
-
 body {
-    background-color: blue;
+    background-color: whitesmoke;
+    border-style: solid;
+    color: black;
 }
 
-h1 {
-    color: brown;
-}
+/*h1 {
+    color: black;
+}*/
 
 .bg-red {
     background-color: red;
 }
 
-div {
+/*div {
     background-color: purple;
+}*/
+
+.input-small {
+    height: 10px;
+    size: 15;
+    border-radius: 25px;
 }

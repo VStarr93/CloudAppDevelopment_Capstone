@@ -12,7 +12,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
         <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
-    
     </head>
 
     <body class="container-fluid">
@@ -27,28 +26,28 @@
        <!--Add a nav bar here -->
         <div class="sticky-top">
             <!--Row for Header-->
-            <div class="row">
-                <div class="col bg-dark">
+            <div class="row bg-dark">
+                <div class="col-3 bg-dark">
                     <div class="navbar navbar-dark navbar-header">
                         <a class="navbar-brand" href="{% url 'djangoapp:index' %}">Best Cars</a>
                     </div>
                 </div>
 
-                <div class="col bg-dark">
-                    <ul class="nav navbar-nav text-right">
+                <div class="col bg-dark align-self-center">
+                    <ul class="nav navbar-nav">
                         {% if user.is_authenticated %}
-                        <li>
+                        <li class="ml-auto">
                             <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
                             <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
                         </li>
                         {% else %}
-                        <li>
+                        <li class="ml-auto">
                             <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
                                 {% csrf_token %}
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Username" name="username" >
-                                    <input type="password" class="form-control" placeholder="Username" name="psw" >
-                                    <button class="btn btn-primary" type="submit">Login</button>
+                                    <input type="text" class="form-control input-small" placeholder="Username" name="username" >
+                                    <input type="password" class="form-control input-small" placeholder="Password" name="psw" >
+                                    <button class="btn btn-primary btn-small" type="submit">Login</button>
                                     <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
                                 </div>
                             </form>
