@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         {% load static %}
         <meta charset="UTF-8">
         <title>About Us</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css">
+        <link rel="stylesheet" href="{% static 'djangoapp/styles.css' %}">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet">
         <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
         <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
     
@@ -24,48 +25,48 @@
             </div>
         </div>-->
        <!--Add a nav bar here -->
-       <div class="sticky-top">
-        <!--Row for Header-->
-        <div class="row">
-            <div class="col bg-dark">
-                <div class="navbar navbar-dark navbar-header">
-                    <a class="navbar-brand" href="{% url 'djangoapp:index' %}">Best Cars</a>
+        <div class="sticky-top">
+            <!--Row for Header-->
+            <div class="row">
+                <div class="col bg-dark">
+                    <div class="navbar navbar-dark navbar-header">
+                        <a class="navbar-brand" href="{% url 'djangoapp:index' %}">Best Cars</a>
+                    </div>
+                </div>
+
+                <div class="col bg-dark">
+                    <ul class="nav navbar-nav text-right">
+                        {% if user.is_authenticated %}
+                        <li>
+                            <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
+                            <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
+                        </li>
+                        {% else %}
+                        <li>
+                            <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Username" name="username" >
+                                    <input type="password" class="form-control" placeholder="Username" name="psw" >
+                                    <button class="btn btn-primary" type="submit">Login</button>
+                                    <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
+                                </div>
+                            </form>
+                        </li>
+                        {% endif %}
+                    </ul>
                 </div>
             </div>
-
-            <div class="col bg-dark">
-                <ul class="nav navbar-nav text-right">
-                    {% if user.is_authenticated %}
-                    <li>
-                        <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
-                        <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
-                    </li>
-                    {% else %}
-                    <li>
-                        <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
-                            {% csrf_token %}
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Username" name="username" >
-                                <input type="password" class="form-control" placeholder="Username" name="psw" >
-                                <button class="btn btn-primary" type="submit">Login</button>
-                                <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
-                            </div>
-                        </form>
-                    </li>
-                    {% endif %}
-                </ul>
+            <!--Row for Navigation-->
+            <div class="row">
+                <div class="col bg-dark">
+                    <ul class="navbar list-unstyled justify-content-center">
+                        <li><a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a></li>
+                        <li><a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a></li>
+                        <li><a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <!--Row for Navigation-->
-        <div class="row">
-            <div class="col bg-dark">
-                <ul class="navbar list-unstyled justify-content-center">
-                    <li><a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a></li>
-                    <li><a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a></li>
-                    <li><a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a></li>
-                </ul>
-            </div>
-        </div>
         </div>
         <!--Add a dealer table here -->
 
@@ -114,7 +115,7 @@
             </div>
 
             <div class="col">
-                <p class="">
+                <p>
                     <strong>Samantha Ovark</strong><br>
                     <em>CEO</em><br>
                     <br>
@@ -127,10 +128,8 @@
                         what led her to opening Best Cars dealership. She aspires to help 
                         her community rise from the ashes.
                     </p>
-
                 </p>
             </div>
-
         </div>
 
         <div class="row mb-5">
@@ -139,7 +138,7 @@
             </div>
 
             <div class="col">
-                <p class="">
+                <p>
                     <strong>Samantha Ovark</strong><br>
                     <em>CEO</em><br>
                     <br>
@@ -152,10 +151,8 @@
                         what led her to opening Best Cars dealership. She aspires to help 
                         her community rise from the ashes.
                     </p>
-
                 </p>
             </div>
-
         </div>
 
         <div class="row mb-5">
@@ -164,7 +161,7 @@
             </div>
 
             <div class="col">
-                <p class="">
+                <p>
                     <strong>Samantha Ovark</strong><br>
                     <em>CEO</em><br>
                     <br>
@@ -177,10 +174,8 @@
                         what led her to opening Best Cars dealership. She aspires to help 
                         her community rise from the ashes.
                     </p>
-
                 </p>
             </div>
-
         </div>
 
         <!--Add a Footer-->
@@ -202,6 +197,6 @@
                 <h5>Car Dealership</h5>
             </div>
         </div>
-    </body>
 
+    </body>
 </html>

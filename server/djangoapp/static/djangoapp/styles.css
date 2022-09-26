@@ -1,0 +1,16 @@
+body {
+    background-color: blue;
+    border-style: solid;
+}
+
+h1 {
+    color: black;
+}
+
+.bg-red {
+    background-color: red;
+}
+
+div {
+    background-color: purple;
+}
