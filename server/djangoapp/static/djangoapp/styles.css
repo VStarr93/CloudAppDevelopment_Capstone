@@ -18,8 +18,8 @@ body {
 }*/
 
 .input-small {
-    height: 40px;
-    size: 15;
+    height: 25px;
+    size: 8;
     border-radius: 25px;
     align-self: center;
     text-align: center;
@@ -30,7 +30,7 @@ body {
 }
 
 .btn-small {
-    height: 40px;
+    height: 25px;
     border-radius: 25px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
