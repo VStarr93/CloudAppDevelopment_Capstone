@@ -11,6 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@cloudant/cloudant": "^4.4.0"
+    "@ibm-cloud/cloudant": "^0.2.1"
   }
 }
