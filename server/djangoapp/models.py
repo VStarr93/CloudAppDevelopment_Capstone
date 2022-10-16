@@ -22,7 +22,8 @@ class CarMake(models.Model):
     description = models.TextField(max_length=500)
 # - Any other fields you would like to include in car make model
 # - __str__ method to print a car make object
-
+    def __str__(self):
+        return self.name + ' : ' + self.description
 
 # <HINT> Create a Car Model model 
 class CarModel(models.Model):
