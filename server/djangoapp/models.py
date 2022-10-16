@@ -44,7 +44,8 @@ class CarModel(models.Model):
 # - Any other fields you would like to include in car model
     color = models.CharField(max_length=10)
 # - __str__ method to print a car make object
-
+    def __str__(self):
+        return self.year + ' ' + self.car_make + ' ' + self.name + ' ' + self.type
 
 # <HINT> Create a plain Python class `CarDealer` to hold dealer data
 
