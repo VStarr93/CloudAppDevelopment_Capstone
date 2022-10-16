@@ -23,7 +23,7 @@ class CarMake(models.Model):
 # - Any other fields you would like to include in car make model
 # - __str__ method to print a car make object
     def __str__(self):
-        return self.name + ' : ' + self.description
+        return self.name
 
 # <HINT> Create a Car Model model 
 class CarModel(models.Model):
@@ -41,13 +41,12 @@ class CarModel(models.Model):
     )
     type = models.CharField(max_length=20, choices=type_choices, default="SEDAN")
 # - Year (DateField)
-    year = models.DateField(format='yyyy')
+    year = models.DateField(null=True, blank=True)
 # - Any other fields you would like to include in car model
     color = models.CharField(max_length=10)
 # - __str__ method to print a car make object
     def __str__(self):
-        return self.year + ' ' + self.car_make + ' ' + self.name + ' ' + self.type
-
+        return self.name
 # <HINT> Create a plain Python class `CarDealer` to hold dealer data
 
 
