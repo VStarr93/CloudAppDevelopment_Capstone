@@ -86,7 +86,7 @@ def registration_request(request):
 def get_dealerships(request):
     # context = {}
     if request.method == "GET":
-        url = "https://us-south.functions.appdomain.cloud/api/v1/web/912f86c9-d8b5-4c4d-8b16-5cdafae12178/dealership-package/get-dealership"
+        url = "https://us-south.functions.appdomain.cloud/api/v1/web/912f86c9-d8b5-4c4d-8b16-5cdafae12178/dealership-package/get-dealership.json"
         # Get dealers from the URL
         dealerships = get_dealers_from_cf(url)
         # Concat all dealer's short name
