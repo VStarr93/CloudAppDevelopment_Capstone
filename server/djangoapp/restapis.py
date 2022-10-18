@@ -154,9 +154,25 @@ def get_dealer_by_state(url, st, **kwargs):
     return results
 
 # Create an `analyze_review_sentiments` method to call Watson NLU and analyze text
-# def analyze_review_sentiments(text):
-# - Call get_request() with specified arguments
+def analyze_review_sentiments(dealerreview):
 # - Get the returned sentiment label such as Positive or Negative
-
-
-
+    # results = []
+    # Create Parameters
+    params = dict()
+    params['text'] = kwargs['dealerreview']
+    params['version'] = kwargs['version']
+    params['features'] = kwargs['features']
+    params['return_analyzed_text'] = kwargs['return_analyzed_text']
+    url = "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/37605604-7150-4aa2-a90f-64bb55e09f99"
+    api_key = "pWyOpBuGY16kWDCXIVm2kn_B_GI9E6yo5G8-QRnTebJS"
+# - Call get_request() with specified arguments
+    json_result = get_request(
+        url,
+        params=params,
+        headers={'Content-Type': 'application/json'},
+        auth=HTTPBasicAuth('apikey', api_key)
+    )
+    # retreive setiment from json_result
+    sentiment = json_result['features']['sentiment']
+    # Return sentiment
+    return sentiment
