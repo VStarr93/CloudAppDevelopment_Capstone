@@ -161,7 +161,7 @@ def get_dealer_by_state(url, st, **kwargs):
     return results
 
 # Create an `analyze_review_sentiments` method to call Watson NLU and analyze text
-def analyze_review_sentiments(dealerreview, **kwargs):
+#def analyze_review_sentiments(dealerreview, **kwargs):
 # - Get the returned sentiment label such as Positive or Negative
     # results = []
     # Create Parameters
