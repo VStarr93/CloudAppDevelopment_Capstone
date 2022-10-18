@@ -21,7 +21,8 @@ urlpatterns = [
     path(route='logout', view=views.logout_request, name='logout'),
     # path for home/index
     path(route='', view=views.get_dealerships, name='index'),
-
+    # path for get_dealer_by_id_view
+    path(route='<int:id>', view=views.get_dealer_by_id_view, name='by_id'),
     # path for dealer reviews view
 
     # path for add a review view
