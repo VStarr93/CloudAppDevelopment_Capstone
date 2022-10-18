@@ -65,7 +65,7 @@ def get_dealer_reviews_from_cf(url, dealerId, **kwargs):
     # Parse JSON results into a DealerReview object List
     if json_result:
         # Get the row list in JSON as reviews
-        reviews = json_result['reviews']
+        reviews = json_result['Reviews']
         # for each review object
         for review in reviews:
             # Create a DealerReview object with values in reviews object
@@ -78,8 +78,8 @@ def get_dealer_reviews_from_cf(url, dealerId, **kwargs):
                 car_make=review['car_make'],
                 car_model=review['car_model'],
                 car_year=review['car_year'],
-                sentiment=review['sentiment'],
-                id=review['dealerId'],
+                #sentiment=review['sentiment'],
+                id=review['id'],
             )
             results.append(review_obj)
     return results
