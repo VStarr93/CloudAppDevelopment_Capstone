@@ -109,7 +109,7 @@ def get_dealer_by_id_view(request, id):
         return HttpResponse(dealer_names)
     
 # Create a get_dealer_by_state view
-def get_dealer_by_statefg_view(request, st):
+def get_dealer_by_state_view(request, st):
     # context = {}
     if request.method == "GET":
         url = "https://us-south.functions.appdomain.cloud/api/v1/web/912f86c9-d8b5-4c4d-8b16-5cdafae12178/dealership-package/get-dealership.json"
