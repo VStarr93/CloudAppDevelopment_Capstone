@@ -127,7 +127,6 @@ def get_dealer_details(request, dealer_id):
         context = {}
         review_url = "https://us-south.functions.appdomain.cloud/api/v1/web/912f86c9-d8b5-4c4d-8b16-5cdafae12178/dealership-package/get-review.json"
         reviews = get_dealer_reviews_from_cf(review_url, dealerId=dealer_id)
-        print(reviews)
         # Append a list of reviews to context
         context['reviews'] = reviews
         # return a HttpResponse
