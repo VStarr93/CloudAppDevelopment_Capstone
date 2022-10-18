@@ -113,11 +113,6 @@ def get_dealer_by_state(url, st, **kwargs):
             results.append(dealer_obj)
     return results
 
-# Create a get_dealers_by_state
-# - Call get_request() with specified arguments
-# - Parse JSON results into a DealerView object list
-
-
 # Create an `analyze_review_sentiments` method to call Watson NLU and analyze text
 # def analyze_review_sentiments(text):
 # - Call get_request() with specified arguments
