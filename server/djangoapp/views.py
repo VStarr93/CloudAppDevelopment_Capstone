@@ -120,10 +120,18 @@ def get_dealer_by_state_view(request, st):
         # Return a list of dealer short name
         #return render(request, 'djangoapp/index.html', context)
         return HttpResponse(dealer_names)
-# Create a `get_dealer_details` view to render the reviews of a dealer
-# def get_dealer_details(request, dealer_id):
+# Create a `get_dealer_details' view to render the reviews of a dealer
+def get_dealer_details(request, dealer_id):
 # ...
-
+    # context = {}
+    if request.method == "GET":
+        url = "https://us-south.functions.appdomain.cloud/api/v1/web/912f86c9-d8b5-4c4d-8b16-5cdafae12178/dealership-package/get-review.json"
+        # Get dealers from the URL
+        reviews = get_dealer_reviews_from_cf(url, dealerId=dealer_id)
+        # Append a list of reviews to context
+        context = {reviews}
+        # return a HttpResponse
+        return HttpResponse(context)
 # Create a `add_review` view to submit a review
 # def add_review(request, dealer_id):
 # ...
