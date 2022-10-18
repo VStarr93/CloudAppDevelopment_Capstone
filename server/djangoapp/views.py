@@ -137,6 +137,28 @@ def get_dealer_details(request, dealer_id):
         # return render(request, 'djangoapp/dealer_details.html', context)
         
 # Create a `add_review` view to submit a review
-# def add_review(request, dealer_id):
+def add_review(request, dealer_id):
 # ...
-
+    # first, authenticate the user
+    
+    # Create a dictionary object called review to append
+    # keys like (time, name, dealership, review, purchase)
+    # and any attributes you defined in your review-post cloud function
+    # Example:
+    # review["time"] = datetime.utcnow().isoformat()
+    # review["dealership"] = 11
+    # review["review"] = "This is a great car dealer"
+    
+    # Create another dictionary object called json_payload with one key
+    # called review. like json_payload["review"]=review
+    # the json_payload will be used as the request body
+    
+    # Call the post_request method with the payload 
+    # post_request(url, json_payload, dealerId=dealer_id)
+    
+    # Return the result of post_request to add_review method
+    # you may print the post response in console or append to HTTPResponse
+    
+    # Configure the route for add_review view in urls.py
+    if request.method == "POST":
+        
