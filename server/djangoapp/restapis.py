@@ -86,6 +86,33 @@ def get_dealer_by_id(url, id, **kwargs):
             results.append(dealer_obj)
     return results
 
+# Create a get_dealer_by_state
+def get_dealer_by_state(url, st, **kwargs):
+    results = []
+# - Call get_request() with specified arguments
+    json_result = get_request(url, st=st)
+# - Parse JSON results into a CarDealer object list
+    if json_result:
+        # Get the row list in JSON as dealers
+        dealers = json_result['detList']
+        # For each dealer object
+        for dealer in dealers: 
+            # Create a CarDealer object with values in dealers object
+            dealer_obj = CarDealer(
+                address=dealer['address'], 
+                city=dealer['city'],
+                full_name=dealer['full_name'],
+                id=dealer['id'],
+                lat=dealer['lat'],
+                long=dealer['long'],
+                short_name=dealer['short_name'],
+                st=dealer['st'],
+                state=dealer['state'],
+                zip=dealer['zip'],
+            )
+            results.append(dealer_obj)
+    return results
+
 # Create a get_dealers_by_state
 # - Call get_request() with specified arguments
 # - Parse JSON results into a DealerView object list
