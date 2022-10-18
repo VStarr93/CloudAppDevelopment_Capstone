@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import CarDealer, CarModel, CarMake
-from .restapis import get_dealer_by_id, get_dealers_from_cf, get_request
+from .restapis import get_dealer_by_id, get_dealers_from_cf, get_request, get_dealer_by_state
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from datetime import datetime
@@ -114,7 +114,7 @@ def get_dealer_by_state_view(request, st):
     if request.method == "GET":
         url = "https://us-south.functions.appdomain.cloud/api/v1/web/912f86c9-d8b5-4c4d-8b16-5cdafae12178/dealership-package/get-dealership.json"
         # Get dealers from the URL
-        dealerships = get_dealer_by_id(url, st)
+        dealerships = get_dealer_by_state(url, st)
         # Concat all dealer's short name
         dealer_names = ','.join([dealer.short_name for dealer in dealerships])
         # Return a list of dealer short name
