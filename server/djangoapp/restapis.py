@@ -17,23 +17,11 @@ def get_request(url, **kwargs):
     print(kwargs)
     print("GET from {} ".format(url))
         # Call get method of requests library with URL and parameters
-        # Create an if statement for auth - NLU Service
-    api_key = kwargs.get('api_key')
-    if api_key:
-        #Basic authentication GET
-        response = requests.get(
-            url, 
-            params=kwargs['params'], 
-            headers={'Content-Type': 'application/json'},
-            auth=HTTPBasicAuth('apikey', api_key)
-        )
-    else:
-        # No Authentication GET
-        response = requests.get(
-            url, 
-            params=kwargs,
-            headers={'Content-Type': 'application/json'}
-        )
+    response = requests.get(
+        url, 
+        params=kwargs,
+        headers={'Content-Type': 'application/json'}
+    )
     status_code = response.status_code
     print("With status {} ".format(status_code))
     json_data = json.loads(response.text)
