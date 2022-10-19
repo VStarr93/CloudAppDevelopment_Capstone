@@ -71,16 +71,16 @@
         </div>
         <!--Add Review Cards here -->
         <div class="row">
-            <div class="col card-deck min-vh-100">
+            <div class="col card-deck">
                 <!-- Add <div class="card"> -->
                 {% for review in reviews %}
-                    <div class="card my-card" style="min-width: ">
+                    <div class="card align-content-between my-5 p-2" style="width: 100px; height: 200px;">
                         {% if review.sentiment == "positive" %}
-                        <img class="card-img-left" src="{{MEDIA_URL}}/emoji/positive.png">
+                        <img class="card-img-left" style="width: 10%" src="{{MEDIA_URL}}/emoji/positive.png">
                         {% elif review.sentiment == "negative" %}
-                        <img class="card-img-left" src="{{MEDIA_URL}}/emoji/negative.png">
+                        <img class="card-img-left" style="width: 10%" src="{{MEDIA_URL}}/emoji/negative.png">
                         {% else %}
-                        <img class="card-img-left" src="{{MEDIA_URL}}/emoji/neutral.png">
+                        <img class="card-img-left" style="width: 10%" src="{{MEDIA_URL}}/emoji/neutral.png">
                         {% endif %}
                         <div class="card-body">
                             <h4 class="card-title"> {{review.car_year}} {{review.car_make}} {{review.car_model}} </h4>
