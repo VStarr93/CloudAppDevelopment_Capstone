@@ -128,17 +128,22 @@ def get_dealer_details(request, dealer_id):
 # ...
     if request.method == "GET":
         context = {}
-        review_url = "https://us-south.functions.appdomain.cloud/api/v1/web/912f86c9-d8b5-4c4d-8b16-5cdafae12178/dealership-package/get-review.json"
-        reviews = get_dealer_reviews_from_cf(review_url, dealerId=dealer_id)
+        reviewUrl = "https://us-south.functions.appdomain.cloud/api/v1/web/912f86c9-d8b5-4c4d-8b16-5cdafae12178/dealership-package/get-review.json"
+        reviews = get_dealer_reviews_from_cf(reviewUrl, dealerId=dealer_id)
         # Append a list of reviews to context
         context['reviews'] = reviews
+        # Append dealer object to context
+        dealershipUrl = "https://us-south.functions.appdomain.cloud/api/v1/web/912f86c9-d8b5-4c4d-8b16-5cdafae12178/dealership-package/get-dealership.json"
+        dealership = get_dealer_by_id(dealershipUrl, dealer_id)
+        context['dealership'] = dealership
+        context['dealerId'] = dealer_id
         # return a HttpResponse
         #return HttpResponse(context['reviews'])
         # redirect
         return render(request, 'djangoapp/dealer_details.html', context)
         
 # Create a `add_review` view to submit a review
-def add_review(request, dealer_id):
+def add_review(request, dealerId):
 # ...
     # first, authenticate the user
     if request.user.is_authenticated:
@@ -179,10 +184,22 @@ def add_review(request, dealer_id):
             context["result"] = result
             # Return the result of post_request to add_review method
             # you may print the post response in console or append to HTTPResponse
-            return render(request, 'djangoapp/add_review.html', context)
-        elif request.method == 'GET':
+            return redirect('djangoapp:dealer_details', dealer_id=dealer_id)
+        
+        # if request.method == 'GET'
+        if request.method == 'GET':
             context = {}
-            
+            # query the cars with the dealer id to be reviewed
+            # the queried cars will be used in the <select> dropdown
+            cars = CarModel.objects.filter(dealer_id=int(dealerId))
+            context["Cars"] = cars
+            # add dealer_id to context
+            context["dealerId"] =dealerId
+            # add dealership to context
+            dealerUrl = "https://us-south.functions.appdomain.cloud/api/v1/web/912f86c9-d8b5-4c4d-8b16-5cdafae12178/dealership-package/get-dealership.json"
+            dealer = get_dealer_by_id(dealerUrl, dealerId)
+            context["dealer"] =dealer
             return render(request, 'djangoapp/add_review.html', context)
             # Configure the route for add_review view in urls.py
-        
+    else:
+        return HttpResponse("You are not logged in")

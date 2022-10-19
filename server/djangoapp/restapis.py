@@ -122,7 +122,7 @@ def get_dealer_by_id(url, id, **kwargs):
                 zip=dealer['zip'],
             )
             results.append(dealer_obj)
-    return results
+    return dealer_obj
 
 # Create a get_dealer_by_state
 def get_dealer_by_state(url, st, **kwargs):

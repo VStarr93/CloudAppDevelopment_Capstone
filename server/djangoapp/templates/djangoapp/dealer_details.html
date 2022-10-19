@@ -38,7 +38,7 @@
                         <ul class="nav navbar-nav">
                             {% if user.is_authenticated %}
                             <li class="ml-auto">
-                                <a class="btn btn-link" href="{% url 'djangoapp:add_review' dealer.id %}">Add Review</a>
+                                <a class="btn btn-link" href="{% url 'djangoapp:add_review' dealerId%}">Add Review</a>
                                 <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
                                 <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
                             </li>

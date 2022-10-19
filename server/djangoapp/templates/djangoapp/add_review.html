@@ -73,17 +73,30 @@
     <div class="row">
         <div class="col min-vh-100">
             <!-- Add Review Form Here -->
-            <form action="{% url 'djangoapp:add_review' dealer_id %}" method="post">
+            <form class="mt-5 align-items-center" action="{% url 'djangoapp:add_review' dealerId %}" method="POST">
+                <div class="container card">
                 {% csrf_token %}
-                <textarea class="" name="content" id="content" rows="2" placeholder="Type your review here" required></textarea>
-                <input class="form-check-input" type="checkbox" name="purchasecheck" id="purchasecheck">
-                <select name="car" id="car" class="form-select" required>
-                    {% for car in cars %}
-                    <option selected value="{{car.id}}">{{car.year|date:"Y"}} {{car.make.name}} {{car.name}} </option>
-                    {% endfor %}
-                </select>
-                <input class="date-own form-control" type="text" name="purchasedate" id="purchasedate">
-                <button class="btn btn-primary" type="submit">Add Review</button>
+                <div class="form-group">
+                    <h2 class="form-title form-group">Form Title</h2>
+                    <label for="content">Enter the review content: </label>
+                    <textarea class="form-control" name="content" id="content" rows="2" placeholder="Type your review here" required></textarea><br>
+                    <label for="purchasecheck">Has purchased the car from {{dealer.full_name}}: </label>
+                    <input class="form-check-input" type="checkbox" name="purchasecheck" id="purchasecheck"><br>
+                    <label for="car">Select your car (year make model):</label>
+                    <select name="car" id="car" class="form-select" required>
+                        {% if Cars %}
+                        {% for car in Cars %}
+                            <option selected value="added">Added</option>
+                            <option selected value={{car.id}}>{{car.year}} {{car.car_make.name}} {{car.name}} </option>
+                        {% endfor %}
+                        {% else %}
+                        <option selected value="test">No Cars</option>
+                        {% endif %}
+                    </select>
+                    <input class="date-own form-control" type="text" name="purchasedate" id="purchasedate"><br>
+                    <button class="btn btn-primary" type="submit">Add Review</button>
+                </div>
+                </div>
             </form>
         </div>
     </div>
