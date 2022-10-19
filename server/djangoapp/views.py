@@ -133,7 +133,7 @@ def get_dealer_details(request, dealer_id):
         # Append a list of reviews to context
         context['reviews'] = reviews
         # return a HttpResponse
-        return HttpResponse(reviews)
+        return HttpResponse(context['reviews'])
         # redirect
         # return render(request, 'djangoapp/dealer_details.html', context)
         

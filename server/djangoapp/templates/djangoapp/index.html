@@ -12,6 +12,11 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
         <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
+        <script>
+            $(function() {
+                $('#table').bootstrapTable()
+            })
+        </script>
     </head>
 
     <body class="container-fluid">
@@ -71,7 +76,37 @@
         <!--Add a dealer table here -->
         <div class="row">
             <div class="col min-vh-100">
-
+                <!-- Create a Bootstrap table <table>-->
+                <!-- For the table head <thead>, add a table row <tr> with
+                    the following table header cells
+                    <th> represents the dealer attribute names:
+                        ID, Dealer Name, City, Address, Zip, State -->
+                <table class="table" id="table" data-filter-control="true">
+                    <thead>
+                        <tr>
+                            <th data-id="ID">ID</th>
+                            <th data-dealerName="Dealer Name">Dealer Name</th>
+                            <th data-addres="Address">Address</th>
+                            <th data-city="City">City</th>
+                            <th data-state="State" data-filter-control="select">State</th>
+                            <th data-zip="Zip">Zip</th>
+                        </tr>
+                    </thead>
+                    <!-- for the table body <tbody>, add a <tr> for each
+                        dealer object in dealerships -->
+                    <tbody>
+                        {% for dealer in dealerships %}
+                        <tr>
+                            <td>{{ dealer.id }}</td>
+                            <td><a href="{% url 'djangoapp:dealer_details' dealer.id %}"> {{ dealer.full_name }} </a></td>
+                            <td>{{ dealer.address }}</td>
+                            <td>{{ dealer.city }}</td>
+                            <td>{{ dealer.state }}</td>
+                            <td>{{ dealer.zip }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
         <!--Add a Footer here-->
