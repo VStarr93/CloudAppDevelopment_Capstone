@@ -142,38 +142,47 @@ def add_review(request, dealer_id):
 # ...
     # first, authenticate the user
     if request.user.is_authenticated:
-        json_data = json.loads(request.body)
-        # Create a dictionary object called review to append
-        # keys like (time, name, dealership, review, purchase)
-        # and any attributes you defined in your review-post cloud function
-        # Example:
-        # review["time"] = datetime.utcnow().isoformat()
-        # review["dealership"] = 11
-        # review["review"] = "This is a great car dealer"
-        review = {}
-        review['id'] = json_data['id']
-        review['name'] = json_data['name']
-        review['dealership'] = json_data['dealership']
-        review['review'] = json_data['review']
-        review['purchase_date'] = json_data['purchase_date']
-        review['purchase'] = json_data['purchase']
-        review['car_make'] = json_data['car_make']
-        review['car_model'] = json_data['car_model']
-        review['car_year'] = json_data['car_year']
-    
-        # Create another dictionary object called json_payload with one key
-        # called review. like json_payload["review"]=review
-        # the json_payload will be used as the request body
-        json_payload = {}
-        json_payload["review"] = review
+        # if request.method == 'POST':
+        if request.method == 'POST':
+            
+            json_data = json.loads(request.body)
+            # Create a dictionary object called review to append
+            # keys like (time, name, dealership, review, purchase)
+            # and any attributes you defined in your review-post cloud function
+            # Example:
+            # review["time"] = datetime.utcnow().isoformat()
+            # review["dealership"] = 11
+            # review["review"] = "This is a great car dealer"
+            review = {}
+            review['id'] = json_data['id']
+            review['name'] = json_data['name']
+            review['dealership'] = json_data['dealership']
+            review['review'] = json_data['review']
+            review['purchase_date'] = json_data['purchase_date']
+            review['purchase'] = json_data['purchase']
+            review['car_make'] = json_data['car_make']
+            review['car_model'] = json_data['car_model']
+            review['car_year'] = json_data['car_year']
 
-        # Call the post_request method with the payload 
-        # post_request(url, json_payload, dealerId=dealer_id)
-        url = "https://us-south.functions.appdomain.cloud/api/v1/web/912f86c9-d8b5-4c4d-8b16-5cdafae12178/dealership-package/post-review"
-        result = post_request(url, json_payload)
-        print(result)
-        # Return the result of post_request to add_review method
-        # you may print the post response in console or append to HTTPResponse
-        return HttpResponse(result)
-        # Configure the route for add_review view in urls.py
+            # Create another dictionary object called json_payload with one key
+            # called review. like json_payload["review"]=review
+            # the json_payload will be used as the request body
+            json_payload = {}
+            json_payload["review"] = review
+
+            # Call the post_request method with the payload 
+            # post_request(url, json_payload, dealerId=dealer_id)
+            url = "https://us-south.functions.appdomain.cloud/api/v1/web/912f86c9-d8b5-4c4d-8b16-5cdafae12178/dealership-package/post-review"
+            result = post_request(url, json_payload)
+            print(result)
+            context = {}
+            context["result"] = result
+            # Return the result of post_request to add_review method
+            # you may print the post response in console or append to HTTPResponse
+            return render(request, 'djangoapp/add_review.html', context)
+        elif request.method == 'GET':
+            context = {}
+            
+            return render(request, 'djangoapp/add_review.html', context)
+            # Configure the route for add_review view in urls.py
         

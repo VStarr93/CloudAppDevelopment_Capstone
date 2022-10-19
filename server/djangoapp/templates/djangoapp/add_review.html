@@ -4,13 +4,108 @@
     <meta charset="UTF-8">
     {% load static %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'djangoapp/styles.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
-
+    <script type="text/javascript">
+        $('.date-own').datepicker({
+            format: 'mm/dd/yyyy'
+        });
+    </script>
 </head>
-    <body>
-    <!--Add review form here -->
-    </body>
+<body class="container-fluid">
+    <!--Add a Header here
+    <div class="row">
+        <div class="col bg-dark">
+            <header class="text-center">
+                <p style="color: white;">Welcome!</p>
+            </header>
+        </div>
+    </div>-->
+   <!--Add a Header and nav bar here -->
+    <div class="sticky-top bg-dark">
+            <!--Row for Header-->
+            <div class="row bg-dark">
+                <div class="col-3 bg-dark">
+                    <div class="navbar navbar-dark navbar-header">
+                        <a class="navbar-brand" href="{% url 'djangoapp:index' %}">Best Cars</a>
+                    </div>
+                </div>
+
+                <div class="col bg-dark align-self-center">
+                    <!--I want to add a dropdown for mobile that will display login/logout/signup and menu-->
+                    <ul class="nav navbar-nav">
+                        {% if user.is_authenticated %}
+                        <li class="ml-auto">
+                            <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
+                            <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
+                        </li>
+                        {% else %}
+                        <li class="ml-auto">
+                            <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <input type="text" class="input-small border-curve-left" placeholder="Username" name="username" >
+                                    <input type="password" class="input-small" placeholder="Password" name="psw" >
+                                    <button class="btn btn-primary btn-small" type="submit">Login</button>
+                                    <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
+                                </div>
+                            </form>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <!--Row for Navigation-->
+            <div class="row">
+                <div class="col bg-dark">
+                    <ul class="navbar list-unstyled justify-content-center">
+                        <li><a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a></li>
+                        <li><a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a></li>
+                        <li><a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+    </div>
+    <!--Add a dealer table here -->
+    <div class="row">
+        <div class="col min-vh-100">
+            <!-- Add Review Form Here -->
+            <form action="{% url 'djangoapp:add_review' dealer_id %}" method="post">
+                {% csrf_token %}
+                <textarea class="" name="content" id="content" rows="2" placeholder="Type your review here" required></textarea>
+                <input class="form-check-input" type="checkbox" name="purchasecheck" id="purchasecheck">
+                <select name="car" id="car" class="form-select" required>
+                    {% for car in cars %}
+                    <option selected value="{{car.id}}">{{car.year|date:"Y"}} {{car.make.name}} {{car.name}} </option>
+                    {% endfor %}
+                </select>
+                <input class="date-own form-control" type="text" name="purchasedate" id="purchasedate">
+                <button class="btn btn-primary" type="submit">Add Review</button>
+            </form>
+        </div>
+    </div>
+    <!--Add a Footer here-->
+    <div class="row position-relative">
+        <div class="col bg-dark">
+            <footer class="has-footer navbar-dark navbar">
+                <h5 style="color: white;">This is a footer</h5>
+                <ul class="navbar">
+                    <a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a>
+                    <a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a>
+                    <a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a>
+                </ul>
+            </footer>
+        </div>
+    </div>
+
+    <div class="row fixed-bottom">
+        <div class="col bg-dark text-center" style="height: 25px; color: white;">
+            <h5>Car Dealership</h5>
+        </div>
+    </div>
+    
+</body>
 </html>
