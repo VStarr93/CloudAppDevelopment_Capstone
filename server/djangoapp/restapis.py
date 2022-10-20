@@ -151,29 +151,6 @@ def get_dealer_by_state(url, st, **kwargs):
             results.append(dealer_obj)
     return results
 
-# Create an `analyze_review_sentiments` method to call Watson NLU and analyze text
-#def analyze_review_sentiments(dealerreview, **kwargs):
-# - Get the returned sentiment label such as Positive or Negative
-    # results = []
-    # Create Parameters
-    # params = dict()
-    # params['text'] = dealerreview
-    # params['version'] = "2022-04-07"
-    # params['features'] = 'sentiment'
-    # params['return_analyzed_text'] = 'True'
-    # url = "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/37605604-7150-4aa2-a90f-64bb55e09f99"
-    # api_key = "H3SiImAh9Uj71OIjET2b2mnsc-Di9RRmVKCclhYmYKIR"
-# - # Call get_request() with specified arguments
-    # kwargs = {
-    #     'api_key': api_key,
-    #     'params': params
-    # }
-    # json_result = get_request(url,**kwargs)
-    # # retreive setiment from json_result
-    # sentiment = json_result['features']['sentiment']
-    # # Return sentiment
-    # return sentiment
-
 # Def analyze_review_sentiments(text):
 def analyze_review_sentiments(text):
     # url = ''
@@ -196,3 +173,34 @@ def analyze_review_sentiments(text):
     label = response['sentiment']['document']['label']
     # return(label)
     return label
+
+# Create a get_all_reviews method
+def get_all_reviews(url, **kwargs):
+    results = []
+    # Call get_request() with specified parameters
+    json_result = get_request(url)
+    # Parse JSON results into a DealerReview object List
+    if json_result:
+        # Get the row list in JSON as reviews
+        reviews = json_result['Reviews']
+        # for each review object
+        for review in reviews:
+            # Create a DealerReview object with values in reviews object
+            review_obj = DealerReview(
+                dealership=review['dealership'],
+                name=review['name'],
+                purchase=review['purchase'],
+                review=review['review'],
+                purchase_date=review['purchase_date'],
+                car_make=review['car_make'],
+                car_model=review['car_model'],
+                car_year=review['car_year'],
+                id=review['id'],
+                sentiment=''
+            )
+            dealerreview = review_obj.review
+            sentiment=analyze_review_sentiments(dealerreview)
+            print(sentiment)
+            review_obj.sentiment=sentiment
+            results.append(review_obj)
+    return results

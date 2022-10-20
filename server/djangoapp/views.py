@@ -144,7 +144,6 @@ def get_dealer_details(request, dealer_id):
         
 # Create a `add_review` view to submit a review
 def add_review(request, dealerId):
-# ...
     # first, authenticate the user
     if request.user.is_authenticated:
         # if request.method == 'POST':
@@ -201,5 +200,15 @@ def add_review(request, dealerId):
             context["dealer"] =dealer
             return render(request, 'djangoapp/add_review.html', context)
             # Configure the route for add_review view in urls.py
+    else:
+        return HttpResponse("You are not logged in")
+
+# create a view to import cars from cloudant databases
+def import_cars(request):
+    # authenticate user
+    if request.user.is_authenticated:
+        # pull all reviews from cloudant
+        getReviewsUrl = "https://us-south.functions.appdomain.cloud/api/v1/web/912f86c9-d8b5-4c4d-8b16-5cdafae12178/dealership-package/get-review"
+        reviews = get_dealer_reviews_from_cf(getReviewsUrl, dealerId)
     else:
         return HttpResponse("You are not logged in")
