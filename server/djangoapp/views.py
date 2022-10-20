@@ -4,9 +4,9 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import CarDealer, CarModel, CarMake
-from .restapis import get_dealer_by_id, get_dealers_from_cf, \
+from .restapis import get_all_reviews, get_dealer_by_id, get_dealers_from_cf, \
     get_request, get_dealer_by_state, get_dealer_reviews_from_cf, \
-    post_request
+    post_request, get_all_reviews
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from datetime import datetime
@@ -208,7 +208,21 @@ def import_cars(request):
     # authenticate user
     if request.user.is_authenticated:
         # pull all reviews from cloudant
-        getReviewsUrl = "https://us-south.functions.appdomain.cloud/api/v1/web/912f86c9-d8b5-4c4d-8b16-5cdafae12178/dealership-package/get-review"
-        reviews = get_dealer_reviews_from_cf(getReviewsUrl, dealerId)
+        getReviewsUrl = "https://us-south.functions.appdomain.cloud/api/v1/web/912f86c9-d8b5-4c4d-8b16-5cdafae12178/dealership-package/get-review.json"
+        reviews = get_all_reviews(getReviewsUrl)
+        importedReviews = []
+        for review in reviews:
+            carMake = CarMake.objects.create(
+                name=review.name,
+                description="Imported from cloudant Database"
+            )
+            carModel = CarModel.objects.create(
+                car_make=carMake,
+                name=review.car_model,
+                dealer_id=review.dealership,
+                year=review.car_year
+            )
+            importedReviews.append(carModel)
+        return HttpResponse(importedReviews)
     else:
         return HttpResponse("You are not logged in")
