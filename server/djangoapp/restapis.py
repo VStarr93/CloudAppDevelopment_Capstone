@@ -87,7 +87,7 @@ def get_dealer_reviews_from_cf(url, dealerId, **kwargs):
                 car_make=review['car_make'],
                 car_model=review['car_model'],
                 car_year=review['car_year'],
-                id=review['id'],
+                id=review['_id'],
                 sentiment=''
             )
             dealerreview = review_obj.review
@@ -166,7 +166,8 @@ def analyze_review_sentiments(text):
     # response = natural_language_understanding.analyze(text=text, features=Features(sentiment-SentimentOptions(targets=[text]))).get_result()
     response = nlu.analyze(
         text=text,
-        features=Features(sentiment=SentimentOptions(targets=[text]))
+        features=Features(sentiment=SentimentOptions(targets=[text])),
+        language="en"
     ).get_result()
     # label = json.dumps(response, indent=2)
     # label = response['sentiment']['document']['label']
