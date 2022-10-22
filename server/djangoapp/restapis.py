@@ -25,6 +25,7 @@ def get_request(url, **kwargs):
     status_code = response.status_code
     print("With status {} ".format(status_code))
     json_data = json.loads(response.text)
+    print(json_data)
     return json_data
     # If any error occurs
     #print("Network exception occurred")
@@ -67,10 +68,15 @@ def get_dealers_from_cf(url, **kwargs):
 
 
 # Create a get_dealer_reviews_from_cf method to get reviews by dealer id from a cloud function
-def get_dealer_reviews_from_cf(url, dealerId, **kwargs):
+def get_dealer_reviews_from_cf(url, **kwargs):
     results = []
-    # Call get_request() with specified parameters
-    json_result = get_request(url, dealerId=dealerId)
+    dealerId=kwargs.get('dealerId')
+    if dealerId:
+        # Call get_request() with specified parameters
+        json_result = get_request(url, dealerId=dealerId)
+    else:
+        json_result = get_request(url)
+        
     # Parse JSON results into a DealerReview object List
     if json_result:
         # Get the row list in JSON as reviews
@@ -178,14 +184,17 @@ def analyze_review_sentiments(text):
 # Create a get_all_reviews method
 def get_all_reviews(url, **kwargs):
     results = []
+    print("inside get_all_reviews")
     # Call get_request() with specified parameters
     json_result = get_request(url)
     # Parse JSON results into a DealerReview object List
     if json_result:
         # Get the row list in JSON as reviews
         reviews = json_result['Reviews']
+        print("json_result returned - GetAllReviews")
         # for each review object
         for review in reviews:
+            print("inside for statement")
             # Create a DealerReview object with values in reviews object
             review_obj = DealerReview(
                 dealership=review['dealership'],
@@ -204,4 +213,6 @@ def get_all_reviews(url, **kwargs):
             print(sentiment)
             review_obj.sentiment=sentiment
             results.append(review_obj)
+        else:
+            print("json_result did not return - GetAllReviews")
     return results

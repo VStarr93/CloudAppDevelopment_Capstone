@@ -41,7 +41,7 @@ class CarModel(models.Model):
     )
     type = models.CharField(max_length=20, choices=type_choices, default="SEDAN")
 # - Year (DateField)
-    year = models.DateField(null=True, blank=True)
+    year = models.IntegerField(null=True, blank=True)
 # - Any other fields you would like to include in car model
     color = models.CharField(max_length=10)
 # - __str__ method to print a car make object

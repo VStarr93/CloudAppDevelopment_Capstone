@@ -135,7 +135,7 @@ def get_dealer_details(request, dealer_id):
         # Append dealer object to context
         dealershipUrl = "https://us-south.functions.appdomain.cloud/api/v1/web/912f86c9-d8b5-4c4d-8b16-5cdafae12178/dealership-package/get-dealership.json"
         dealership = get_dealer_by_id(dealershipUrl, dealer_id)
-        context['dealership'] = dealership
+        context['dealer'] = dealership
         context['dealerId'] = dealer_id
         # return a HttpResponse
         #return HttpResponse(context['reviews'])
@@ -148,8 +148,14 @@ def add_review(request, dealerId):
     if request.user.is_authenticated:
         # if request.method == 'POST':
         if request.method == 'POST':
+            json_data = request.POST
+            #json_data = data['body']
+            #decoded = request.body.decode('utf-8')
+            #json_data = json.loads(request.body).decode('utf-8')
             
-            json_data = json.loads(request.body)
+            # Find car model
+            review_car = CarModel.objects.get(id=json_data['car'])
+            
             # Create a dictionary object called review to append
             # keys like (time, name, dealership, review, purchase)
             # and any attributes you defined in your review-post cloud function
@@ -158,15 +164,15 @@ def add_review(request, dealerId):
             # review["dealership"] = 11
             # review["review"] = "This is a great car dealer"
             review = {}
-            review['id'] = json_data['id']
-            review['name'] = json_data['name']
-            review['dealership'] = json_data['dealership']
-            review['review'] = json_data['review']
-            review['purchase_date'] = json_data['purchase_date']
-            review['purchase'] = json_data['purchase']
-            review['car_make'] = json_data['car_make']
-            review['car_model'] = json_data['car_model']
-            review['car_year'] = json_data['car_year']
+            review['id'] = str(dealerId) + "-" + json_data['car'] + "-" + json_data['purchasedate'] + "-" + request.user.username
+            review['name'] = request.user.username
+            review['dealership'] = dealerId
+            review['review'] = json_data['content']
+            review['purchase_date'] = json_data['purchasedate']
+            review['purchase'] = json_data['purchasecheck']
+            review['car_make'] = review_car.car_make.name
+            review['car_model'] = review_car.name
+            review['car_year'] = review_car.year
 
             # Create another dictionary object called json_payload with one key
             # called review. like json_payload["review"]=review
@@ -183,7 +189,7 @@ def add_review(request, dealerId):
             context["result"] = result
             # Return the result of post_request to add_review method
             # you may print the post response in console or append to HTTPResponse
-            return redirect('djangoapp:dealer_details', dealer_id=dealer_id)
+            return redirect('djangoapp:dealer_details', dealer_id=dealerId)
         
         # if request.method == 'GET'
         if request.method == 'GET':
@@ -206,23 +212,68 @@ def add_review(request, dealerId):
 # create a view to import cars from cloudant databases
 def import_cars(request):
     # authenticate user
+    print("before authentication")
     if request.user.is_authenticated:
-        # pull all reviews from cloudant
-        getReviewsUrl = "https://us-south.functions.appdomain.cloud/api/v1/web/912f86c9-d8b5-4c4d-8b16-5cdafae12178/dealership-package/get-review.json"
-        reviews = get_all_reviews(getReviewsUrl)
-        importedReviews = []
-        for review in reviews:
-            carMake = CarMake.objects.create(
-                name=review.name,
-                description="Imported from cloudant Database"
-            )
-            carModel = CarModel.objects.create(
-                car_make=carMake,
-                name=review.car_model,
-                dealer_id=review.dealership,
-                year=review.car_year
-            )
-            importedReviews.append(carModel)
-        return HttpResponse(importedReviews)
+        print ("inside import_cars")
+        if request.method == 'GET':
+            context = {}
+            # pull all reviews from cloudant
+            reviewUrl = "https://us-south.functions.appdomain.cloud/api/v1/web/912f86c9-d8b5-4c4d-8b16-5cdafae12178/dealership-package/get-review.json"
+            reviews = get_all_reviews(reviewUrl)
+            importedReviews = []
+            for review in reviews:
+                carMake = CarMake.objects.create(
+                    name=review.car_make,
+                    description="Imported from cloudant Database"
+                )
+                carModel = CarModel.objects.create(
+                    car_make=carMake,
+                    name=review.car_model,
+                    dealer_id=review.dealership,
+                    year=review.car_year
+                )
+                importedReviews.append(carModel)
+                print(carModel)
+            return redirect('djangoapp:index')
+        else:
+            pass
+    else:
+        print("user not logged in")
+        return HttpResponse("You are not logged in")
+    
+# Create a view for "add new vehicle" button
+def add_new_vehicle(request, dealerId):
+    # authenticate user
+    if request.user.is_authenticated:
+        # Get - go to add new vehicle form
+        if request.method == 'GET':
+            context={}
+            context['dealerId'] = dealerId
+            dealerUrl = "https://us-south.functions.appdomain.cloud/api/v1/web/912f86c9-d8b5-4c4d-8b16-5cdafae12178/dealership-package/get-dealership.json"
+            dealer = get_dealer_by_id(dealerUrl, dealerId)
+            context["dealer"] =dealer
+            cars = CarModel.objects.filter(dealer_id=int(dealerId))
+            context["Cars"] = cars
+            return render(request, 'djangoapp/add_new_vehicle.html', context)
+        # Post - submission from add new vehicle form
+        if request.method == 'POST':
+            context = {}
+            json_data = request.POST
+            # check if make is already in database (if statement)
+
+                # if in database, then use make
+                
+                # if not in database, add to database
+            
+            # check if model is already in database (if statement)
+            
+                # if in database, then use deliver message "already in database"
+                
+                # if not in database, add to database
+            
+            # add success message to context
+            # return dealer details page
+            return render(request, 'djangoapp/dealer_details.html', context)
+            
     else:
         return HttpResponse("You are not logged in")

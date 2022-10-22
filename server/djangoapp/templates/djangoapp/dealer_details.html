@@ -69,12 +69,33 @@
                     </div>
                 </div>
         </div>
-        <!--Add Review Cards here -->
+
+        <!--Add a heading to this page-->
         <div class="row">
-            <div class="col card-deck">
-                <!-- Add <div class="card"> -->
+            <div class="col">
+                <h2>{{dealer.full_name}}</h2>
+                <p>Wlecome to our page!</p>
+            </div>
+        </div>
+        <!--Add Dealer information to this page-->
+        <div class="row">
+            <div class="col">
+                <p>
+                    {{dealer.address}} <br>
+                    {{dealer.city}}, {{dealer.state}} {{dealer.zip}} <br>
+                </p>
+                <button type="button" class="btn btn-primary">Add New Vehicle</button>
+            </div>
+        </div>
+        <!--Add a 'add new vehicle' button to this page-->
+
+
+        <!--Add Review Cards here -->
+        <div class="row justify-content-around m-5">
+            <!-- Add <div class="card"> -->
                 {% for review in reviews %}
-                    <div class="card align-content-between my-5 p-2" style="width: 100px; height: 200px;">
+                <div class="col-4">
+                    <div class="card align-content-between my-5 p-2" style="width: 400px; height: 300px;">
                         {% if review.sentiment == "positive" %}
                         <img class="card-img-left" style="width: 10%" src="{{MEDIA_URL}}/emoji/positive.png">
                         {% elif review.sentiment == "negative" %}
@@ -88,8 +109,8 @@
                             <p class="card-text">{{ review.review}}</p>
                         </div>
                     </div>
+                </div>
                 {%endfor%}
-            </div>
         </div>
         <!--Add a Footer here-->
         <div class="row position-relative">
