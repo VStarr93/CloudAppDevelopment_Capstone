@@ -16,7 +16,7 @@
         <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
     </head>
 
-    <body class="w3-theme-l5">
+    <body class="w3-theme-l5 vw-100">
         
         <!--<div class="row">
             <div class="col ">
@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-            <div class="col  align-self-center">
+            <div class="col  align-self-center mr-5">
                 <ul class="nav navbar-nav">
                     {% if user.is_authenticated %}
                     <li class="ml-auto">
@@ -83,13 +83,8 @@
 
         <!-- include the address and the telephone number of the company-->
         <div class="row align-items-start mt-5">
-            <div class="col border-right mt-2 mb-2 text-right">
-                <div class="">
-                    <iframe class="" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d221664.83570542495!2d-95.64915866718755!3d29.7628028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640bf3743e3a9b7%3A0xd59ca8fed9dbcb98!2sIBM!5e0!3m2!1sen!2sus!4v1664051987410!5m2!1sen!2sus" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-
-            <div class="col text-left">
+            <div class="col-md-6 text-left">
+                <!--Contact Us Row-->
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <div class="text-center">
@@ -97,9 +92,9 @@
                         </div>
                     </div>
                 </div>
-
+                <!--Address Row-->
                 <div class="row">
-                    <div class="col-6 col-md-3 text-left">
+                    <div class="col-6 col-md-3 text-right">
                         <strong>Address: </strong>
                     </div>
 
@@ -109,9 +104,9 @@
                         Houston, Tx 77002<br>
                     </div>
                 </div>
-
+                <!--Phone Number-->
                 <div class="row">
-                    <div class="col-6 col-md-3 text-left">
+                    <div class="col-6 col-md-3 text-right">
                         <strong>Phone Number:</strong>
                     </div>
 
@@ -121,6 +116,9 @@
                 </div>
             </div>
 
+            <div class="col-md-6 border-right mt-2 mb-2 text-center">
+                <iframe class="" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d221664.83570542495!2d-95.64915866718755!3d29.7628028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640bf3743e3a9b7%3A0xd59ca8fed9dbcb98!2sIBM!5e0!3m2!1sen!2sus!4v1664051987410!5m2!1sen!2sus" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
         </div>
         
         <!--Add a Contact Us Form-->
@@ -149,7 +147,7 @@
         <!--users should be able to access the Contact Us page from a footer, a button,
             a menu link, or any other element you choose to use-->
         <!--Add a Footer-->
-        <div class="row position-relative w3-theme-d5 w3-border-theme">
+        <div class="row position-relative w3-theme-d5 w3-border-theme pb-3">
             <div class="col ">
                 <footer class="has-footer navbar-dark navbar">
                     <h5 style="color: white;">This is a footer</h5>
@@ -165,7 +163,7 @@
 
 
         <!--<div class="fixed-bottom">-->
-        <div class="row fixed-bottom w3-theme-d5 w3-border-theme">
+        <div class="row fixed-bottom w3-theme-d5 w3-border-theme pb-3">
         <div class="col  text-center" style="height: 25px; color: white;">
             <h5>Car Dealership</h5>
         </div>
