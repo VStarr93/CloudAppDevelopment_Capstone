@@ -16,7 +16,7 @@
         <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
     </head>
 
-    <body class="w3-theme-l5">
+    <body class="w3-theme-l5 vw-100">
         <!--Add a Header here
         <div class="row">
             <div class="col bg-dark">
@@ -75,8 +75,8 @@
         <!--Add a heading to this page-->
         <div class="row">
             <div class="col">
-                <h2>{{dealer.full_name}}</h2>
-                <p>Wlecome to our page!</p>
+                <h1>{{dealer.full_name}}</h1>
+                <p>Welcome to our page!</p>
             </div>
         </div>
         <!--Add Dealer information to this page-->
@@ -86,18 +86,18 @@
                     {{dealer.address}} <br>
                     {{dealer.city}}, {{dealer.state}} {{dealer.zip}} <br>
                 </p>
-                <button type="button" class="btn btn-primary">Add New Vehicle</button>
+                <!--Add a 'add new vehicle' button to this page-->
+                <button type="button" class="w3-btn w3-theme-action w3-round-xxlarge">Add New Vehicle</button>
             </div>
         </div>
-        <!--Add a 'add new vehicle' button to this page-->
 
 
         <!--Add Review Cards here -->
-        <div class="row justify-content-around m-5">
+        <div class="row justify-content-around m-5 min-vh-100">
             <!-- Add <div class="card"> -->
                 {% for review in reviews %}
-                <div class="col-4">
-                    <div class="card align-content-between my-5 p-2" style="width: 400px; height: 300px;">
+                <div class="col-6 col-md-4 card-deck">
+                    <div class="w3-card align-content-between my-5 p-2 w-100" >
                         {% if review.sentiment == "positive" %}
                         <img class="card-img-left" style="width: 10%" src="{{MEDIA_URL}}/emoji/positive.png">
                         {% elif review.sentiment == "negative" %}
