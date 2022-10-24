@@ -12,7 +12,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 </head>
-<body class="container-fluid">
+<body class="w3-theme-l5">
     <script>
         $(function() {
             $('.datepicker').datepicker({
@@ -25,23 +25,23 @@
     </script>
     <!--Add a Header here
     <div class="row">
-        <div class="col bg-dark">
+        <div class="col ">
             <header class="text-center">
                 <p style="color: white;">Welcome!</p>
             </header>
         </div>
     </div>-->
    <!--Add a Header and nav bar here -->
-    <div class="sticky-top bg-dark">
+    <div class="sticky-top w3-theme-d5 w3-border-theme ">
             <!--Row for Header-->
-            <div class="row bg-dark">
-                <div class="col-3 bg-dark">
+            <div class="row ">
+                <div class="col-3 ">
                     <div class="navbar navbar-dark navbar-header">
                         <a class="navbar-brand" href="{% url 'djangoapp:index' %}">Best Cars</a>
                     </div>
                 </div>
 
-                <div class="col bg-dark align-self-center">
+                <div class="col  align-self-center">
                     <!--I want to add a dropdown for mobile that will display login/logout/signup and menu-->
                     <ul class="nav navbar-nav">
                         {% if user.is_authenticated %}
@@ -67,7 +67,7 @@
             </div>
             <!--Row for Navigation-->
             <div class="row">
-                <div class="col bg-dark">
+                <div class="col ">
                     <ul class="navbar list-unstyled justify-content-center">
                         <li><a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a></li>
                         <li><a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a></li>
@@ -108,8 +108,8 @@
         </div>
     </div>
     <!--Add a Footer here-->
-    <div class="row position-relative">
-        <div class="col bg-dark">
+    <div class="row position-relative w3-theme-d5 w3-border-theme">
+        <div class="col ">
             <footer class="has-footer navbar-dark navbar">
                 <h5 style="color: white;">This is a footer</h5>
                 <ul class="navbar">
@@ -121,8 +121,8 @@
         </div>
     </div>
 
-    <div class="row fixed-bottom">
-        <div class="col bg-dark text-center" style="height: 25px; color: white;">
+    <div class="row fixed-bottom w3-theme-d5 w3-border-theme">
+        <div class="col  text-center" style="height: 25px; color: white;">
             <h5>Car Dealership</h5>
         </div>
     </div>
