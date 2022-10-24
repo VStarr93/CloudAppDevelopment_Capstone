@@ -1,21 +1,6 @@
-body {
-    background-color: whitesmoke;
-    border-style: solid;
-    color: black;
-    text-align: center;
-}
-
-/*h1 {
-    color: black;
-}*/
-
 .bg-red {
     background-color: red;
 }
-
-/*div {
-    background-color: purple;
-}*/
 
 .input-small {
     height: 75%;

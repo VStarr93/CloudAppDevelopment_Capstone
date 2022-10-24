@@ -6,6 +6,8 @@
         <title>Dealership Review</title>
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'djangoapp/w3-theme-deep-purple.css' %}">
+        <link rel="stylesheet" href="{% static 'djangoapp/w3.css' %}">
         <link rel="stylesheet" href="{% static 'djangoapp/styles.css' %}">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -14,7 +16,7 @@
         <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
     </head>
 
-    <body class="container-fluid">
+    <body class="w3-theme-l5">
         <!--Add a Header here
         <div class="row">
             <div class="col bg-dark">
@@ -24,16 +26,16 @@
             </div>
         </div>-->
        <!--Add a Header and nav bar here -->
-        <div class="sticky-top bg-dark">
+        <div class="sticky-top w3-theme-d5">
                 <!--Row for Header-->
-                <div class="row bg-dark">
-                    <div class="col-3 bg-dark">
+                <div class="row">
+                    <div class="col-3">
                         <div class="navbar navbar-dark navbar-header">
                             <a class="navbar-brand" href="{% url 'djangoapp:index' %}">Best Cars</a>
                         </div>
                     </div>
 
-                    <div class="col bg-dark align-self-center">
+                    <div class="col align-self-center">
                         <!--I want to add a dropdown for mobile that will display login/logout/signup and menu-->
                         <ul class="nav navbar-nav">
                             {% if user.is_authenticated %}
@@ -60,7 +62,7 @@
                 </div>
                 <!--Row for Navigation-->
                 <div class="row">
-                    <div class="col bg-dark">
+                    <div class="col">
                         <ul class="navbar list-unstyled justify-content-center">
                             <li><a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a></li>
                             <li><a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a></li>
@@ -113,8 +115,8 @@
                 {%endfor%}
         </div>
         <!--Add a Footer here-->
-        <div class="row position-relative">
-            <div class="col bg-dark">
+        <div class="row position-relative w3-theme-d5">
+            <div class="col">
                 <footer class="has-footer navbar-dark navbar">
                     <h5 style="color: white;">This is a footer</h5>
                     <ul class="navbar">
@@ -126,8 +128,8 @@
             </div>
         </div>
 
-        <div class="row fixed-bottom">
-            <div class="col bg-dark text-center" style="height: 25px; color: white;">
+        <div class="row fixed-bottom w3-theme-d5">
+            <div class="col text-center" style="height: 25px; color: white;">
                 <h5>Car Dealership</h5>
             </div>
         </div>
