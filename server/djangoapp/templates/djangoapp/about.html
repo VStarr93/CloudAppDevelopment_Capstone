@@ -16,7 +16,7 @@
         <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
     </head>
 
-    <body class="w3-theme-l5">
+    <body class="w3-theme-l5 vw-100 border-0">
         
         <!--<div class="row">
             <div class="col bg-dark">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
 
-                <div class="col align-self-center">
+                <div class="col align-self-center mr-5">
                     <ul class="nav navbar-nav">
                         {% if user.is_authenticated %}
                         <li class="ml-auto">
@@ -69,32 +69,31 @@
                 </div>
             </div>
         </div>
-        <!--Add a dealer table here -->
 
         <!--Add a paragraph-->
-        <div class="row mb-5 mt-3">
+        <div class="row m-5">
             <div class="col text-center">
-                <h1 class="border-bottom">Welcome to Best Cars dealership, home to the best cars in North America.</h1>
-                <h2 class="">We sell domestic and imported cars at reasonable prices.</h2>
+                <h1 class="w3-border-bottom p-2">Welcome to Best Cars dealership, home to the best cars in North America.</h1>
+                <h2 class="p-2">We sell domestic and imported cars at reasonable prices.</h2>
             </div>
         </div>
 
         <!--Add relevent information-->
         <!--Add two subtitle blocks-->
-        <div class="row">
+        <div class="row m-2">
             <div class="col border-right text-center">
-                <h3>Subtitle</h3>
+                <h3 class="p-2">Subtitle</h3>
                 <p>This is a paragraph for this subtitle</p>
             </div>
 
             <div class="col text-center">
-                <h3>Subtitle</h3>
+                <h3 class="p-2">Subtitle</h3>
                 <p>This is a paragraph for this subtitle</p>
             </div>
         </div>
 
         <!--Add Four Stars as a divider-->
-        <div class="row text-center mt-5 mb-5">
+        <div class="row text-center mx-3 my-5">
             <div class="col">
                 <img src="{% static 'djangoapp/asset_1.png' %}" style="width: 25%;" />
             </div>
@@ -109,13 +108,13 @@
             </div>
         </div>
 
-        <!--About the Owner's Section-->
-        <div class="row mb-5">
-            <div class="col border-right text-right">
+        <!--About the Owner's Section
+        <div class="row my-5 mx-3 py-3 w3-border-top">
+            <div class="col-4 border-right text-right">
                 <img src="{% static 'djangoapp/asset_1.png' %}" style="width: 100%; max-width: 300px;" />
             </div>
 
-            <div class="col">
+            <div class="col-8">
                 <p>
                     <strong>Samantha Ovark</strong><br>
                     <em>CEO</em><br>
@@ -133,12 +132,12 @@
             </div>
         </div>
 
-        <div class="row mb-5">
-            <div class="col border-right text-right">
+        <div class="row my-5 mx-3">
+            <div class="col-4 border-right text-right">
                 <img src="{% static 'djangoapp/asset_1.png' %}" style="width: 100%; max-width: 300px;" />
             </div>
 
-            <div class="col">
+            <div class="col-8">
                 <p>
                     <strong>Samantha Ovark</strong><br>
                     <em>CEO</em><br>
@@ -156,12 +155,12 @@
             </div>
         </div>
 
-        <div class="row mb-5">
-            <div class="col border-right text-right">
+        <div class="row my-5 mx-3">
+            <div class="col-4 border-right text-right">
                 <img src="{% static 'djangoapp/asset_1.png' %}" style="width: 100%; max-width: 300px;" />
             </div>
 
-            <div class="col">
+            <div class="col-8">
                 <p>
                     <strong>Samantha Ovark</strong><br>
                     <em>CEO</em><br>
@@ -176,11 +175,46 @@
                         her community rise from the ashes.
                     </p>
                 </p>
+            </div>
+        </div>-->
+
+        <div class="row my-5 mx-3 w3-border-top w3-border-bottom">
+            <div class="col align-middle">
+                <h3 class="" style="font-size: 40px">Meet Our Founders</h3>
+            </div>
+        </div>
+        <div class="row my-5 mx-3 w3-border-top">
+            <div class="col card-deck">
+                <div class="w3-card w3-theme-l4">
+                    <div class="row no-gutters p-2 align-items-center">
+                        <div class="col-md-4">
+                            <img class="w-25" src="{% static 'djangoapp/asset_1.png' %}">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-header">
+                                <strong>Samantha Ovark</strong>
+                            </div>
+                            <div class="card-body">
+                                <p class=" text-center">
+                                    Samantha Ovark is an exceptionally talented mother of 6
+                        who has earned her Masters Degree in Business Management, 
+                        with a major in Accounting and Finance, and minor in 
+                        Psychology. She started her first business at the age of 16 
+                        while attending a local public school. Her drive and ambition is 
+                        what led her to opening Best Cars dealership. She aspires to help 
+                        her community rise from the ashes.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-card"></div>
+                <div class="w3-card"></div>
             </div>
         </div>
 
         <!--Add a Footer-->
-        <div class="row position-relative w3-theme-d5 w3-border-theme">
+        <div class="row position-relative w3-theme-d5 w3-border-theme pb-3">
             <div class="col">
                 <footer class="has-footer navbar-dark navbar">
                     <h5 style="color: white;">This is a footer</h5>
@@ -193,7 +227,7 @@
             </div>
         </div>
 
-        <div class="row fixed-bottom w3-theme-d5 w3-border-theme">
+        <div class="row fixed-bottom w3-theme-d5 w3-border-theme pb-3">
             <div class="col text-center" style="height: 25px; color: white;">
                 <h5>Car Dealership</h5>
             </div>
