@@ -14,8 +14,8 @@ from ibm_watson.natural_language_understanding_v1 \
 #                                     auth=HTTPBasicAuth('apikey', api_key))
 
 def get_request(url, **kwargs):
-    print(kwargs)
-    print("GET from {} ".format(url))
+    #print(kwargs)
+    #print("GET from {} ".format(url))
         # Call get method of requests library with URL and parameters
     response = requests.get(
         url, 
@@ -23,9 +23,9 @@ def get_request(url, **kwargs):
         headers={'Content-Type': 'application/json'}
     )
     status_code = response.status_code
-    print("With status {} ".format(status_code))
+    #print("With status {} ".format(status_code))
     json_data = json.loads(response.text)
-    print(json_data)
+    #print(json_data)
     return json_data
     # If any error occurs
     #print("Network exception occurred")
@@ -52,16 +52,16 @@ def get_dealers_from_cf(url, **kwargs):
             #dealer_doc = dealer['doc']
             # Create a CarDealer object with values in 'doc' object
             dealer_obj = CarDealer(
-                address=dealer['address'], 
-                city=dealer['city'],
-                full_name=dealer['full_name'],
-                id=dealer['id'],
-                lat=dealer['lat'],
-                long=dealer['long'],
-                short_name=dealer['short_name'],
-                st=dealer['st'],
-                state=dealer['state'],
-                zip=dealer['zip'],
+                address=dealer["value"]['address'], 
+                city=dealer["value"]['city'],
+                full_name=dealer["value"]['full_name'],
+                id=dealer["value"]['id'],
+                lat=dealer["value"]['lat'],
+                long=dealer["value"]['long'],
+                short_name=dealer["value"]['short_name'],
+                st=dealer["value"]['st'],
+                state=dealer["value"]['state'],
+                zip=dealer["value"]['zip'],
             )
             results.append(dealer_obj)
     return results
@@ -85,20 +85,19 @@ def get_dealer_reviews_from_cf(url, **kwargs):
         for review in reviews:
             # Create a DealerReview object with values in reviews object
             review_obj = DealerReview(
-                dealership=review['dealership'],
-                name=review['name'],
-                purchase=review['purchase'],
-                review=review['review'],
-                purchase_date=review['purchase_date'],
-                car_make=review['car_make'],
-                car_model=review['car_model'],
-                car_year=review['car_year'],
-                id=review['_id'],
+                dealership=review['value']['dealership'],
+                name=review['value']['name'],
+                purchase=review['value']['purchase'],
+                review=review['value']['review'],
+                purchase_date=review['value']['purchase_date'],
+                car_make=review['value']['car_make'],
+                car_model=review['value']['car_model'],
+                car_year=review['value']['car_year'],
+                id=review['value']['id'],
                 sentiment=''
             )
             dealerreview = review_obj.review
             sentiment=analyze_review_sentiments(dealerreview)
-            print(sentiment)
             review_obj.sentiment=sentiment
             results.append(review_obj)
     return results
@@ -116,16 +115,16 @@ def get_dealer_by_id(url, id, **kwargs):
         for dealer in dealers: 
             # Create a CarDealer object with values in dealers object
             dealer_obj = CarDealer(
-                address=dealer['address'], 
-                city=dealer['city'],
-                full_name=dealer['full_name'],
-                id=dealer['id'],
-                lat=dealer['lat'],
-                long=dealer['long'],
-                short_name=dealer['short_name'],
-                st=dealer['st'],
-                state=dealer['state'],
-                zip=dealer['zip'],
+                address=dealer['value']['address'], 
+                city=dealer['value']['city'],
+                full_name=dealer['value']['full_name'],
+                id=dealer['value']['id'],
+                lat=dealer['value']['lat'],
+                long=dealer['value']['long'],
+                short_name=dealer['value']['short_name'],
+                st=dealer['value']['st'],
+                state=dealer['value']['state'],
+                zip=dealer['value']['zip'],
             )
             results.append(dealer_obj)
     return dealer_obj
