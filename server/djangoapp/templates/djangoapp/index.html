@@ -8,7 +8,9 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="{% static 'djangoapp/w3-theme-deep-purple.css' %}">
         <link rel="stylesheet" href="{% static 'djangoapp/w3.css' %}">
+        <link rel="stylesheet" href="{% static 'djangoapp/styles.css' %}">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://kit.fontawesome.com/3cbe8736b9.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
@@ -20,7 +22,7 @@
         </script>
     </head>
 
-    <body class="w3-theme-l5">
+    <body class="w3-theme-l5 vw-100">
         <!--Add a Header here
         <div class="row">
             <div class="col bg-dark">
@@ -39,22 +41,21 @@
                         </div>
                     </div>
 
-                    <div class="col align-self-center">
-                        <!--I want to add a dropdown for mobile that will display login/logout/signup and menu-->
-                        <ul class="nav navbar-nav">
+                    <div class="col-9 align-self-center text-right">
+                        <ul class="nav navbar-nav mr-5">
                             {% if user.is_authenticated %}
-                            <li class="ml-auto">
-                                <a class="btn btn-link" href="{% url 'djangoapp:import_cars' %}">Import Cars</a>
-                                <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
+                            <li class="ml-auto text-right">
+                                <!--<a class="btn btn-link" href="{% url 'djangoapp:import_cars' %}">Import Cars</a>-->
+                                <a class="btn btn-link" href="#">Welcome, {{ user.first_name }} ({{ user.username }})!</a>
                                 <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
                             </li>
                             {% else %}
-                            <li class="ml-auto">
+                            <li class="ml-auto text-right">
                                 <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
                                     {% csrf_token %}
                                     <div class="input-group">
-                                        <input type="text" class="input-small border-curve-left" placeholder="Username" name="username" >
-                                        <input type="password" class="input-small" placeholder="Password" name="psw" >
+                                        <input type="text" class="input-small border-curve-left" placeholder="Username" name="username" size="8">
+                                        <input type="password" class="input-small" placeholder="Password" name="psw" size="8">
                                         <button class="btn btn-primary btn-small" type="submit">Login</button>
                                         <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
                                     </div>
@@ -83,15 +84,15 @@
                     the following table header cells
                     <th> represents the dealer attribute names:
                         ID, Dealer Name, City, Address, Zip, State -->
-                <table class="table w3-table" id="table" data-filter-control="true">
-                    <thead class="">
+                <table class="table w3-table w-75 ml-auto mr-auto" id="table" data-filter-control="filter">
+                    <thead class="align-text-top">
                         <tr class="">
-                            <th class=""data-id="ID">ID</th>
-                            <th class=""data-dealerName="Dealer Name">Dealer Name</th>
-                            <th class=""data-addres="Address">Address</th>
-                            <th class=""data-city="City">City</th>
-                            <th class=""data-state="State" data-filter-control="select">State</th>
-                            <th class=""data-zip="Zip">Zip</th>
+                            <th class=""data-field="ID" data-filter-control="select">ID</th>
+                            <th class=""data-field="Dealer Name" data-filter-control="input">Dealer Name</th>
+                            <th class=""data-field="Address" data-filter-control="input">Address</th>
+                            <th class=""data-field="City" data-filter-control="select">City</th>
+                            <th class=""data-field="State" data-filter-control="select">State</th>
+                            <th class=""data-field="Zip" data-filter-control="select">Zip</th>
                         </tr>
                     </thead>
                     <!-- for the table body <tbody>, add a <tr> for each

@@ -47,8 +47,8 @@
                             <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
                                 {% csrf_token %}
                                 <div class="input-group">
-                                    <input type="text" class="input-small border-curve-left" placeholder="Username" name="username" >
-                                    <input type="password" class="input-small" placeholder="Password" name="psw" >
+                                    <input type="text" class="input-small border-curve-left" placeholder="Username" name="username" size="8">
+                                    <input type="password" class="input-small" placeholder="Password" name="psw" size="8">
                                     <button class="btn btn-primary btn-small" type="submit">Login</button>
                                     <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
                                 </div>
@@ -187,11 +187,11 @@
             <div class="col card-deck">
                 <div class="w3-card w3-theme-l4">
                     <div class="row no-gutters p-2 align-items-center">
-                        <div class="col-md-4">
+                        <div class="col-md-4 text-center pt-3 pb-3">
                             <img class="w-25" src="{% static 'djangoapp/asset_1.png' %}">
                         </div>
                         <div class="col-md-8">
-                            <div class="card-header">
+                            <div class="card-header text-center">
                                 <strong>Samantha Ovark</strong>
                             </div>
                             <div class="card-body">

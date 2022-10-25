@@ -49,8 +49,8 @@
                                 <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
                                     {% csrf_token %}
                                     <div class="input-group">
-                                        <input type="text" class="input-small border-curve-left" placeholder="Username" name="username" >
-                                        <input type="password" class="input-small" placeholder="Password" name="psw" >
+                                        <input type="text" class="input-small border-curve-left" placeholder="Username" name="username" size="8">
+                                        <input type="password" class="input-small" placeholder="Password" name="psw" size="8">
                                         <button class="btn btn-primary btn-small" type="submit">Login</button>
                                         <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
                                     </div>
@@ -73,21 +73,21 @@
         </div>
 
         <!--Add a heading to this page-->
-        <div class="row">
+        <div class="row text-center">
             <div class="col">
                 <h1>{{dealer.full_name}}</h1>
                 <p>Welcome to our page!</p>
             </div>
         </div>
         <!--Add Dealer information to this page-->
-        <div class="row">
+        <div class="row text-center">
             <div class="col">
                 <p>
                     {{dealer.address}} <br>
                     {{dealer.city}}, {{dealer.state}} {{dealer.zip}} <br>
                 </p>
                 <!--Add a 'add new vehicle' button to this page-->
-                <button type="button" class="w3-btn w3-theme-action w3-round-xxlarge">Add New Vehicle</button>
+                <!--<button type="button" class="w3-btn w3-theme-action w3-round-xxlarge">Add New Vehicle</button>-->
             </div>
         </div>
 

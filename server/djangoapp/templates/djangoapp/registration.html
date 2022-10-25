@@ -29,7 +29,7 @@
                     </div>
                 </div>
 
-                <div class="col align-self-center">
+                <div class="col-9 align-self-center">
                     <ul class="nav navbar-nav">
                         {% if user.is_authenticated %}
                         <li class="ml-auto">
@@ -41,8 +41,8 @@
                             <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
                                 {% csrf_token %}
                                 <div class="input-group">
-                                    <input type="text" class="input-small border-curve-left" placeholder="Username" name="username" >
-                                    <input type="password" class="input-small" placeholder="Password" name="psw" >
+                                    <input type="text" class="input-small border-curve-left" placeholder="Username" name="username" size="8">
+                                    <input type="password" class="input-small" placeholder="Password" name="psw" size="8">
                                     <button class="btn btn-primary btn-small" type="submit">Login</button>
                                     <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
                                 </div>
