@@ -32,7 +32,7 @@
             </div>
         </div>-->
        <!--Add a Header and nav bar here -->
-        <div class="sticky-top w3-theme-d5 w3-border-theme">
+        <div class="sticky-top my-purple-grad">
                 <!--Row for Header-->
                 <div class="row">
                     <div class="col-3">
@@ -69,9 +69,9 @@
                 <div class="row">
                     <div class="col">
                         <ul class="navbar list-unstyled justify-content-center">
-                            <li><a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a></li>
-                            <li><a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a></li>
-                            <li><a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a></li>
+                            <li class="my-light-shadow"><a class="navbar nav-tabs" href="{% url 'djangoapp:index' %}">Home</a></li>
+                            <li class="my-light-shadow"><a class="navbar nav-tabs" href="{% url 'djangoapp:about' %}">About</a></li>
+                            <li class="my-light-shadow"><a class="navbar nav-tabs" href="{% url 'djangoapp:contact' %}">Contact Us</a></li>
                         </ul>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                     the following table header cells
                     <th> represents the dealer attribute names:
                         ID, Dealer Name, City, Address, Zip, State -->
-                <table class="table w3-table w-75 ml-auto mr-auto" id="table" data-filter-control="filter">
+                <table class="table w3-table w-75 ml-auto mr-auto mt-3" id="table" data-filter-control="filter">
                     <thead class="align-text-top">
                         <tr class="">
                             <th class=""data-field="ID" data-filter-control="select">ID</th>
