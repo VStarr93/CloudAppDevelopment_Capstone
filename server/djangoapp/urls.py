@@ -31,4 +31,6 @@ urlpatterns = [
     path(route='dealer/<int:dealerId>/add_review', view=views.add_review, name='add_review'),
     # path for import cars view
     path(route='import', view=views.import_cars, name='import_cars'),
+    #path for add new vehicle view
+    path(route='dealer/<int:dealerId>/add_vehicle', view=views.add_new_vehicle, name='add_vehicle'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

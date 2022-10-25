@@ -11,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://kit.fontawesome.com/3cbe8736b9.js" crossorigin="anonymous"></script>
 </head>
 <body class="w3-theme-l5">
     <script>
@@ -76,32 +77,42 @@
                 </div>
             </div>
     </div>
-    <!--Add a dealer table here -->
+    <!--Add a Review Form here -->
     <div class="row">
         <div class="col min-vh-100">
-            <!-- Add Review Form Here -->
-            <form class="mt-5 align-items-center" action="{% url 'djangoapp:add_review' dealerId %}" method="POST">
-                <div class="container card">
+            <form class="mt-5" action="{% url 'djangoapp:add_review' dealerId %}" method="POST">
+                <div class="container w3-card p-2">
                 {% csrf_token %}
                 <div class="form-group">
-                    <h2 class="form-title form-group">Form Title</h2>
-                    <label for="content">Enter the review content: </label>
-                    <textarea class="form-control" name="content" id="content" rows="2" placeholder="Type your review here" required></textarea><br>
-                    <label for="purchasecheck">Has purchased the car from {{dealer.full_name}}: </label>
-                    <input class="form-check-input" type="checkbox" name="purchasecheck" id="purchasecheck"><br>
-                    <label for="car">Select your car (year make model):</label>
-                    <select name="car" id="car" class="form-select" required>
-                        {% if Cars %}
-                        {% for car in Cars %}
-                            <option selected value={{car.id}}>{{car.year}} {{car.car_make.name}} {{car.name}} </option>
-                        {% endfor %}
-                        {% else %}
-                        <option selected value="test">No Cars</option>
-                        {% endif %}
-                    </select>
-                    <label for='purchasedate'>Purchased</label>
-                    <input class="date-own form-control" type="text" name="purchasedate" id="purchasedate"><br>
-                    <button class="btn btn-primary" type="submit">Add Review</button>
+                    <h2 class="form-title form-group text-center">Add Review</h2>
+                    <div class="input-group p-2">
+                        <label for="content">Enter the review content: </label>
+                        <textarea class="form-control ml-1" name="content" id="content" rows="2" placeholder="Type your review here" required></textarea>
+                    </div>
+                    <div class="input-group p-2">
+                        <label for="purchasecheck">Has purchased the car from {{dealer.full_name}}: 
+                        <input class="form-check-input" type="checkbox" name="purchasecheck" id="purchasecheck"></label>
+                    </div>
+                    <div class="input-group p-2">
+                        <label for="car">Select your car (year make model):</label>
+                        <select name="car" id="car" class="form-select ml-1" required>
+                            {% if Cars %}
+                            {% for car in Cars %}
+                                <option selected value={{car.id}}>{{car.year}} {{car.car_make.name}} {{car.name}} </option>
+                            {% endfor %}
+                            {% else %}
+                            <option selected value="test">No Cars</option>
+                            {% endif %}
+                        </select>
+                        <a class="btn btn-primary w3-round-large w3-theme-action w3-hover-border-deep-purple w3-hover-shadow ml-1" href="{% url 'djangoapp:add_vehicle' dealerId %}"><i class="fa-solid fa-plus"></i></a>
+                    </div>
+                    <div class="input-group p-2">
+                        <label for='purchasedate'>Purchased on: </label>
+                        <input class="date-own form-control w-25 ml-1" type="date" name="purchasedate" id="purchasedate">
+                    </div>
+                    <div class="text-center p-3">
+                        <button class="btn btn-primary w3-round-xxlarge w3-theme-action w3-border-hover-deep-purple w3-hover-shadow" type="submit">Add Review</button>
+                    </div>
                 </div>
                 </div>
             </form>
