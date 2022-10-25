@@ -122,3 +122,11 @@ label {
     display: block;
     margin-left: 18px;
 }
+.my-purple-grad {
+    background-image: linear-gradient(to top,#341d5b,#482880); 
+    box-shadow: 0px 3px 20px 2px #482880;
+    color:#fff !important
+}
+.my-light-shadow:hover {
+    box-shadow: 0px 15px 20px -10px #c1ade5
+}

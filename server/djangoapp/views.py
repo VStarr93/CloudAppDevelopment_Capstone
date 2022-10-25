@@ -254,6 +254,8 @@ def add_new_vehicle(request, dealerId):
             context["dealer"] =dealer
             cars = CarModel.objects.filter(dealer_id=int(dealerId))
             context["Cars"] = cars
+            makes = CarMake.objects.all()
+            context["Makes"] = makes
             return render(request, 'djangoapp/add_new_vehicle.html', context)
         # Post - submission from add new vehicle form
         if request.method == 'POST':
