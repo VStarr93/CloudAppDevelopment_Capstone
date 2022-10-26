@@ -86,14 +86,7 @@
                 {% csrf_token %}
                 <div class="form-group">
                     <h2 class="form-title form-group text-center">Add New Vehicle</h2>
-                    <div class="input-group p-2">
-                        <label for="content">Enter the review content: </label>
-                        <textarea class="form-control ml-1" name="content" id="content" rows="2" placeholder="Type your review here" required></textarea>
-                    </div>
-                    <div class="input-group p-2">
-                        <label for="purchasecheck">Has purchased the car from {{dealer.full_name}}: 
-                        <input class="form-check-input" type="checkbox" name="purchasecheck" id="purchasecheck"></label>
-                    </div>
+                    <!--Input Make-->
                     <div class="input-group p-2">
                         <label for="car_make">Select your make:</label>
                         <select name="car_make" id="car_make" class="form-select ml-1" required>
@@ -105,14 +98,48 @@
                             <option selected value="test">No Cars</option>
                             {% endif %}
                         </select>
+                        <!--Add add_new_make view-->
                         <a class="btn btn-primary w3-round-large w3-theme-action w3-hover-border-deep-purple w3-hover-shadow ml-1" href="{% url 'djangoapp:add_vehicle' dealerId %}"><i class="fa-solid fa-plus"></i></a>
                     </div>
-                    <div class="input-group p-2">
-                        <label for='purchasedate'>Purchased on: </label>
-                        <input class="date-own form-control w-25 ml-1" type="date" name="purchasedate" id="purchasedate">
+                    <div>
+                        <p id="make_message"></p>
                     </div>
+                    <!--Input Year-->
+                    <div class="input-group p-2">
+                        <label for="year">Select your year:</label>
+                        <select name="year" id="year" class="form-select ml-1" required>
+                            {% for year in Years %}
+                                <option selected value={{year}}>{{year}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <!--Input Model-->
+                    <div class="input-group p-2">
+                        <label for="model">Select your model:</label>
+                        <input type="text" list="models" name="model" id="model" class="form-select ml-1" required />
+                        <datalist id="models" >
+                            {% for model in Cars %}
+                                <option value={{model.name}}> {{model.name}} </option>
+                            {% endfor %}
+                        </datalist>
+                    </div>
+                    <!--Input Type-->
+                    <div class="input-group p-2">
+                        <label for="type">Select your type:</label>
+                        <select name="type" id="type" class="form-select ml-1" required>
+                            {% for type in Types %}
+                                <option value={{type}}>{{type}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <!--Input Color-->
+                    <div class="input-group p-2">
+                        <label for="color">Enter your color:</label>
+                        <input type="text" id="color" name="color" class="form-select ml-1">
+                    </div>
+                    <!--Submit Button-->
                     <div class="text-center p-3">
-                        <button class="btn btn-primary w3-round-xxlarge w3-theme-action w3-border-hover-deep-purple w3-hover-shadow" type="submit">Add Review</button>
+                        <button class="btn btn-primary w3-round-xxlarge w3-theme-action w3-border-hover-deep-purple w3-hover-shadow" type="submit">Add Vehicle</button>
                     </div>
                 </div>
                 </div>

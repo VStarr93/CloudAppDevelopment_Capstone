@@ -1,4 +1,7 @@
 from operator import is_not
+#from tkinter import messagebox
+import tkinter as tk
+import tkinter.messagebox
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
@@ -252,10 +255,16 @@ def add_new_vehicle(request, dealerId):
             dealerUrl = "https://us-south.functions.appdomain.cloud/api/v1/web/912f86c9-d8b5-4c4d-8b16-5cdafae12178/dealership-package/get-dealership.json"
             dealer = get_dealer_by_id(dealerUrl, dealerId)
             context["dealer"] =dealer
-            cars = CarModel.objects.filter(dealer_id=int(dealerId))
+            cars = CarModel.objects.filter(dealer_id=int(dealerId)).order_by("name")
             context["Cars"] = cars
-            makes = CarMake.objects.all()
+            makes = CarMake.objects.all().order_by("name")
             context["Makes"] = makes
+            years = []
+            for x in range(1980,2023):
+                years.append(x)
+            context["Years"] = years
+            type_choices = ["Sedan","Wagon","SUV"]
+            context["Types"] = type_choices
             return render(request, 'djangoapp/add_new_vehicle.html', context)
         # Post - submission from add new vehicle form
         if request.method == 'POST':
@@ -268,14 +277,30 @@ def add_new_vehicle(request, dealerId):
                 # if not in database, add to database
             
             # check if model is already in database (if statement)
-            
+            selected_model = json_data["model"]
+            selected_make = json_data["car_make"]
+            make_object = CarMake.objects.get(id=selected_make)
+            selected_year = json_data["year"]
+            selected_color = json_data["color"]
+            selected_type = json_data["type"]
+            car = CarModel.objects.filter(name=selected_model, year=selected_year, color=selected_color, type=selected_type, car_make=selected_make)
                 # if in database, then use deliver message "already in database"
-                
+            if car:
+                return redirect('djangoapp:add_new_vehicle')
                 # if not in database, add to database
-            
+            else:
+                CarModel.objects.create(
+                    car_make = make_object,
+                    name = selected_model,
+                    year = selected_year,
+                    color = selected_color,
+                    type = selected_type,
+                    dealer_id = dealerId,
+                )
+                return  redirect('djangoapp:add_new_vehicle')
             # add success message to context
             # return dealer details page
-            return render(request, 'djangoapp/dealer_details.html', context)
+            return redirect('djangoapp:index')
             
     else:
         return HttpResponse("You are not logged in")
